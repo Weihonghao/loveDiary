@@ -17,6 +17,9 @@
 		F4C902BB1E76099A005C8E38 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902BA1E76099A005C8E38 /* Diary.swift */; };
 		F4C902BD1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902BC1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift */; };
 		F4C902BF1E761591005C8E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902BE1E761591005C8E38 /* User.swift */; };
+		F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C01E763913005C8E38 /* DiaryData.swift */; };
+		F4C902C31E763A16005C8E38 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C21E763A16005C8E38 /* UserData.swift */; };
+		F4C902C51E763B32005C8E38 /* SmashDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		F4C902BA1E76099A005C8E38 /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		F4C902BC1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		F4C902BE1E761591005C8E38 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4C902C01E763913005C8E38 /* DiaryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryData.swift; sourceTree = "<group>"; };
+		F4C902C21E763A16005C8E38 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashDiaryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 				F4C902BA1E76099A005C8E38 /* Diary.swift */,
 				F4C902BC1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift */,
 				F4C902BE1E761591005C8E38 /* User.swift */,
+				F4C902C01E763913005C8E38 /* DiaryData.swift */,
+				F4C902C21E763A16005C8E38 /* UserData.swift */,
+				F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -160,11 +169,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C902C51E763B32005C8E38 /* SmashDiaryTableViewController.swift in Sources */,
 				F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */,
 				F4C902BB1E76099A005C8E38 /* Diary.swift in Sources */,
 				F4C902B71E760579005C8E38 /* DiaryTableViewController.swift in Sources */,
+				F4C902C31E763A16005C8E38 /* UserData.swift in Sources */,
 				F4C902BD1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */,
+				F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */,
 				F4C902B91E76074E005C8E38 /* DiaryTableViewCell.swift in Sources */,
 				F4C902BF1E761591005C8E38 /* User.swift in Sources */,
 			);

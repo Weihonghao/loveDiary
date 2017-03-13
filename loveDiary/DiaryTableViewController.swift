@@ -8,28 +8,13 @@
 
 import UIKit
 
-class DiaryTableViewController: UITableViewController {
+class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let userKeys : [NSString] = ["name", "screen_name", "id_str"]
-        let userVals : [NSString] = ["me", "whh", "1"]
-        let userDict : NSDictionary = NSDictionary(objects: userVals, forKeys: userKeys)
-        
-        
-        //let tmpUser = User(data:userDict)
-        print("\(userDict)")
-        //print("\(tmpUser)")
-        let Keys : [NSString] = ["user", "text", "date", "location", "identifier"]
-        let Values : [Any] = [userDict, "adsf", "3.12", "Stanford", "d1"]
-        let dict : NSDictionary = NSDictionary(objects: Values, forKeys:Keys)
-        var tmpDiarys = Array<Diary>()
-        let tmpDiary = Diary(data: dict)
-        
-        print("\(tmpDiary)")
-        tmpDiarys.insert(tmpDiary!, at: 0)
-        diarys.insert(tmpDiarys, at: 0)
+        //tmpDiarys.insert(tmpDiary!, at: 0)
+        //diarys.insert(tmpDiarys, at: 0)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -45,10 +30,71 @@ class DiaryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     
+    
+    
+    @IBOutlet weak var searchTextField: UITextField!{
+        didSet {
+            searchTextField.delegate = self
+        }
+    }
+    
+    
+    // when the return (i.e. Search) button is pressed in the keyboard
+    // we go off to search for the text in the searchTextField
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == searchTextField {
+            searchText = searchTextField.text
+        }
+        return true
+    }
+    
+    var searchText: String? {
+        didSet {
+            searchTextField?.text = searchText
+            searchTextField?.resignFirstResponder()
+            //lastTwitterRequest = nil                // REFRESHING
+            diarys.removeAll()
+            searchForTweets()
+            tableView.reloadData()
+            /*if searchText != nil{
+                whichToRemove = recentQuery.addNewQuery(newQuery: searchText!.lowercased())
+                //recentQuery.addNewQuery(newQuery: searchText!)
+            }*/
+            title = searchText
+        }
+    }
+    
+    private func searchForTweets() {
+        
+        print("here")
+        let userKeys : [NSString] = ["screen_name"]
+        let userVals : [NSString] = ["whh"]
+        let userDict : NSDictionary = NSDictionary(objects: userVals, forKeys: userKeys)
+        
+        
+        //let tmpUser = User(data:userDict)
+        print("\(userDict)")
+        //print("\(tmpUser)")
+        let Keys : [NSString] = ["user", "text", "date", "location", "identifier"]
+        let Values : [Any] = [userDict, "adsf", "3.12", "Stanford", "d1"]
+        let dict : NSDictionary = NSDictionary(objects: Values, forKeys:Keys)
+        var tmpDiarys = Array<Diary>()
+        let tmpDiary = Diary(data: dict)
+        tmpDiarys.insert(tmpDiary!, at: 0)
+        print("\(tmpDiarys)")
+        
+        
+        insertDiarys(tmpDiarys)
+    }
+    
     private var diarys = [Array<Diary>]()
-    func insertTweets(_ newDiarys: [Diary]) {
+    
+    func insertDiarys(_ newDiarys: [Diary]) {
+        print("start insert")
         self.diarys.insert(newDiarys, at:0)
         self.tableView.insertSections([0], with: .fade)
+        print("diarys \(diarys)")
+        print("finish insert")
     }
     
     
