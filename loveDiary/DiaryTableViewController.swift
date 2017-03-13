@@ -9,18 +9,11 @@
 import UIKit
 import CoreData
 
-class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
+class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //tmpDiarys.insert(tmpDiary!, at: 0)
-        //diarys.insert(tmpDiarys, at: 0)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.searchTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,18 +24,13 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     
-    
-    
-    @IBOutlet weak var searchTextField: UITextField!{
-        didSet {
-            searchTextField.delegate = self
-        }
-    }
+    @IBOutlet weak var searchTextField: UITextField!
     
     
     // when the return (i.e. Search) button is pressed in the keyboard
     // we go off to search for the text in the searchTextField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         if textField == searchTextField {
             searchText = searchTextField.text
         }
@@ -51,57 +39,53 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
     
     var searchText: String? {
         didSet {
-            searchTextField?.text = searchText
-            searchTextField?.resignFirstResponder()
-            //lastTwitterRequest = nil                // REFRESHING
-            diarys.removeAll()
-            searchForTweets()
-            print("after change searchText \(diarys)")
-            tableView.reloadData()
-            /*if searchText != nil{
-                whichToRemove = recentQuery.addNewQuery(newQuery: searchText!.lowercased())
-                //recentQuery.addNewQuery(newQuery: searchText!)
-            }*/
+            updateUI()
             title = searchText
         }
     }
     
-    private func searchForTweets() {
-        
-        print("here")
-        readFromDatabase(with: self.searchText!)
-        
-    }
     
-    private var diarys = [Array<Diary>]()
-    
-    func insertDiarys(_ newDiarys: [Diary]) {
-        print("start insert")
-        self.diarys.insert(newDiarys, at:0)
-        self.tableView.insertSections([0], with: .fade)
-        print("diarys \(diarys)")
-        print("finish insert")
-    }
-    
+    var fetchedResultsController: NSFetchedResultsController<DiaryData>?
     var container: NSPersistentContainer? =
-        (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-
+        (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer{ didSet { updateUI() } }
     
-    
-    private func readFromDatabase(with query: String) {
-        
-        print("starting database load")
-        container?.performBackgroundTask { [weak self] context in
-                //if self?.searchText != nil {
-                    //let matches = try? DiaryData.readDiary(in: context, recent: (self?.searchText!)!)
-                    let matches = try? DiaryData.readDiary(in: context, recent: query)
-                    print("matches \(matches)")
-                    self?.insertDiarys(matches!)
-                //}
-            try? context.save()
-            print("done loading database")
-            self?.tableView.reloadData()
-            //self?.printDatabaseStatistics()
+    private func updateUI() {
+        //print("popularity query is \(queryText)")
+        if let context = container?.viewContext, searchText != nil {
+            let request: NSFetchRequest<DiaryData> = DiaryData.fetchRequest()
+            // For extra credit 1, in order to get two different sections, we need to add this new sortDescriptors as label
+            request.sortDescriptors = [
+                NSSortDescriptor(
+                    key: "user.screenName",
+                    ascending: true,
+                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+                )/*,
+                NSSortDescriptor(
+                    key: "count",
+                    ascending: false
+                ),
+                NSSortDescriptor(
+                    key: "mentionItem",
+                    ascending: true,
+                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+                )*/]
+            
+            //popular things happen more than 1
+            if searchText != "all" {
+                request.predicate = NSPredicate(format:"user.screenName = %@", searchText!)
+            }
+            
+            //we set sectionNameKeyPath as label instead of nil
+            fetchedResultsController = NSFetchedResultsController<DiaryData>(
+                fetchRequest: request,
+                managedObjectContext: context,
+                sectionNameKeyPath: "user.screenName",
+                cacheName: nil
+            )
+            fetchedResultsController?.delegate = self
+            try? fetchedResultsController?.performFetch()
+            tableView.reloadData()
+            print("finish reload data here")
         }
     }
     
@@ -109,21 +93,39 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
     
     
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    /*override func numberOfSections(in tableView: UITableView) -> Int {
         return diarys.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return diarys[section].count
-    }
+    }*/
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Diary", for: indexPath)
         
         let diary: Diary = diarys[indexPath.section][indexPath.row]
         print("new Diary \(diary)")
         if let diaryCell = cell as? DiaryTableViewCell {
             diaryCell.diary = diary
+        }
+        
+        return cell
+    }*/
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //print("\(fetchedResultsController?.sections?.count)")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Diary", for: indexPath) as! DiaryTableViewCell // edit here
+        
+        if let newDiary = fetchedResultsController?.object(at: indexPath) {
+            //print("mentinoitem is \(mention.mentionItem)")
+            cell.diaryDateLabel.text = newDiary.date
+            cell.diaryLocationLabel.text = newDiary.location
+            cell.userLabel.text = newDiary.user?.screenName
+            cell.diaryTextLabel.text = newDiary.text
+            //let tweetCount = tweetCountWithMentionBy(twitterUser)
+            //cell.detailTextLabel?.text = "\(tweetCount) tweet\((tweetCount == 1) ? "" : "s")"
         }
         
         return cell

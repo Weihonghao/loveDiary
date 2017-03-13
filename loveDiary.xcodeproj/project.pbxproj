@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */; };
+		F4ACB56F1E771AD300E4B4DE /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB56E1E771AD300E4B4DE /* FetchedResultsTableViewController.swift */; };
 		F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */; };
 		F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C902A01E75FF78005C8E38 /* Main.storyboard */; };
 		F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4C902A31E75FF78005C8E38 /* loveDiary.xcdatamodeld */; };
@@ -23,7 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataTableViewController.swift; sourceTree = "<group>"; };
+		F4ACB56E1E771AD300E4B4DE /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		F4C902991E75FF78005C8E38 /* loveDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loveDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4C902A11E75FF78005C8E38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,8 +81,10 @@
 				F4C902B11E75FF99005C8E38 /* SupportingFile */,
 				F4C902B81E76074E005C8E38 /* DiaryTableViewCell.swift */,
 				F4C902BA1E76099A005C8E38 /* Diary.swift */,
+				F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */,
 				F4C902BC1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift */,
 				F4C902BE1E761591005C8E38 /* User.swift */,
+				F4ACB56E1E771AD300E4B4DE /* FetchedResultsTableViewController.swift */,
 				F4C902C01E763913005C8E38 /* DiaryData.swift */,
 				F4C902C21E763A16005C8E38 /* UserData.swift */,
 				F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */,
@@ -175,7 +181,9 @@
 				F4C902C31E763A16005C8E38 /* UserData.swift in Sources */,
 				F4C902BD1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */,
+				F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
 				F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */,
+				F4ACB56F1E771AD300E4B4DE /* FetchedResultsTableViewController.swift in Sources */,
 				F4C902B91E76074E005C8E38 /* DiaryTableViewCell.swift in Sources */,
 				F4C902BF1E761591005C8E38 /* User.swift in Sources */,
 				F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */,

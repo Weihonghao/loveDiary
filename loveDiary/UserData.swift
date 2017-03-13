@@ -18,6 +18,9 @@ class UserData: NSManagedObject {
         do {
             let matches = try context.fetch(request)
             if matches.count > 0 {
+                for match in matches{
+                print("screenName \(match.screenName)")
+                }
                 assert(matches.count == 1, "Query.findOrCreateTwitterUser -- database inconsistency!")
                 return matches[0]
             }
