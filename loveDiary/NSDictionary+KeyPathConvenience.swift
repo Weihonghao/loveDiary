@@ -16,7 +16,7 @@ extension NSDictionary {
         return value(forKeyPath: keyPath) as? Int
     }
     func string(forKeyPath keyPath: String) -> String? {
-        print ("string \(value(forKeyPath: keyPath) as? String)")
+        //print ("string \(value(forKeyPath: keyPath) as? String)")
         return value(forKeyPath: keyPath) as? String
     }
     func bool(forKeyPath keyPath: String) -> Bool? {

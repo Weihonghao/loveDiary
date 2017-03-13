@@ -12,7 +12,9 @@ class UserData: NSManagedObject {
     static func findOrCreateUser(matching query: String, in context: NSManagedObjectContext) throws -> UserData
     {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
-        request.predicate = NSPredicate(format: "screenName = %@", query)
+        if query != "all" {
+            request.predicate = NSPredicate(format: "screenName = %@", query)
+        }
         do {
             let matches = try context.fetch(request)
             if matches.count > 0 {
@@ -25,8 +27,8 @@ class UserData: NSManagedObject {
         
         let returnUser = UserData(context: context)
         returnUser.screenName = query
-        //print("new query with \(query)")
+        //print("new user query with \(query)")
         return returnUser
     }
-
+    
 }

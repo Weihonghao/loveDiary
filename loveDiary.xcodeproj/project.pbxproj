@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */; };
 		F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */; };
 		F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C902A01E75FF78005C8E38 /* Main.storyboard */; };
 		F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4C902A31E75FF78005C8E38 /* loveDiary.xcdatamodeld */; };
@@ -19,10 +20,10 @@
 		F4C902BF1E761591005C8E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902BE1E761591005C8E38 /* User.swift */; };
 		F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C01E763913005C8E38 /* DiaryData.swift */; };
 		F4C902C31E763A16005C8E38 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C21E763A16005C8E38 /* UserData.swift */; };
-		F4C902C51E763B32005C8E38 /* SmashDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataTableViewController.swift; sourceTree = "<group>"; };
 		F4C902991E75FF78005C8E38 /* loveDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loveDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4C902A11E75FF78005C8E38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 		F4C902BE1E761591005C8E38 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4C902C01E763913005C8E38 /* DiaryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryData.swift; sourceTree = "<group>"; };
 		F4C902C21E763A16005C8E38 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashDiaryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 				F4C902BE1E761591005C8E38 /* User.swift */,
 				F4C902C01E763913005C8E38 /* DiaryData.swift */,
 				F4C902C21E763A16005C8E38 /* UserData.swift */,
-				F4C902C41E763B32005C8E38 /* SmashDiaryTableViewController.swift */,
+				F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -169,7 +169,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4C902C51E763B32005C8E38 /* SmashDiaryTableViewController.swift in Sources */,
 				F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */,
 				F4C902BB1E76099A005C8E38 /* Diary.swift in Sources */,
 				F4C902B71E760579005C8E38 /* DiaryTableViewController.swift in Sources */,
@@ -179,6 +178,7 @@
 				F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */,
 				F4C902B91E76074E005C8E38 /* DiaryTableViewCell.swift in Sources */,
 				F4C902BF1E761591005C8E38 /* User.swift in Sources */,
+				F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

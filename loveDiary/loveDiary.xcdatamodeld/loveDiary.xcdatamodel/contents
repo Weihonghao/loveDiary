@@ -4,6 +4,7 @@
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mood" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="diarys" inverseEntity="UserData" syncable="YES"/>
     </entity>
@@ -12,7 +13,7 @@
         <relationship name="diarys" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiaryData" inverseName="user" inverseEntity="DiaryData" syncable="YES"/>
     </entity>
     <elements>
+        <element name="DiaryData" positionX="124" positionY="-0" width="128" height="135"/>
         <element name="UserData" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="DiaryData" positionX="124" positionY="-0" width="128" height="118"/>
     </elements>
 </model>

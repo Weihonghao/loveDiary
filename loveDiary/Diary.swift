@@ -16,6 +16,7 @@ public struct Diary
     public let date: String //Date
     public let location: String
     public let identifier: String
+    public let mood: String
     
     
     init?(data: NSDictionary?)
@@ -26,7 +27,8 @@ public struct Diary
             //let created = twitterDateFormatter.date(from: data?.string(forKeyPath: DiaryKey.created) ?? ""),
             let date = data?.string(forKeyPath: DiaryKey.date),
             let location = data?.string(forKeyPath: DiaryKey.location),
-            let identifier = data?.string(forKeyPath: DiaryKey.identifier)
+            let identifier = data?.string(forKeyPath: DiaryKey.identifier),
+            let mood = data?.string(forKeyPath: DiaryKey.mood)
             else {
                 return nil
         }
@@ -37,6 +39,7 @@ public struct Diary
         self.date = date
         self.location = location
         self.identifier = identifier
+        self.mood = mood
         
         /*self.media = Tweet.mediaItems(from: data?.array(forKeyPath: TwitterKey.media))
         self.hashtags = Tweet.mentions(from: data?.array(forKeyPath: TwitterKey.Entities.hashtags), in: text, with: "#")
@@ -50,6 +53,7 @@ public struct Diary
         static let date = "date"
         static let location = "location"
         static let identifier = "identifier"
+        static let mood = "mood"
         /*static let media = "entities.media"
         struct Entities {
             static let hashtags = "entities.hashtags"

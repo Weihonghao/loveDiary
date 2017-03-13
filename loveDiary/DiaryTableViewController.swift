@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
 
@@ -55,6 +56,7 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
             //lastTwitterRequest = nil                // REFRESHING
             diarys.removeAll()
             searchForTweets()
+            print("after change searchText \(diarys)")
             tableView.reloadData()
             /*if searchText != nil{
                 whichToRemove = recentQuery.addNewQuery(newQuery: searchText!.lowercased())
@@ -67,24 +69,8 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
     private func searchForTweets() {
         
         print("here")
-        let userKeys : [NSString] = ["screen_name"]
-        let userVals : [NSString] = ["whh"]
-        let userDict : NSDictionary = NSDictionary(objects: userVals, forKeys: userKeys)
+        readFromDatabase(with: self.searchText!)
         
-        
-        //let tmpUser = User(data:userDict)
-        print("\(userDict)")
-        //print("\(tmpUser)")
-        let Keys : [NSString] = ["user", "text", "date", "location", "identifier"]
-        let Values : [Any] = [userDict, "adsf", "3.12", "Stanford", "d1"]
-        let dict : NSDictionary = NSDictionary(objects: Values, forKeys:Keys)
-        var tmpDiarys = Array<Diary>()
-        let tmpDiary = Diary(data: dict)
-        tmpDiarys.insert(tmpDiary!, at: 0)
-        print("\(tmpDiarys)")
-        
-        
-        insertDiarys(tmpDiarys)
     }
     
     private var diarys = [Array<Diary>]()
@@ -96,6 +82,30 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
         print("diarys \(diarys)")
         print("finish insert")
     }
+    
+    var container: NSPersistentContainer? =
+        (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+
+    
+    
+    private func readFromDatabase(with query: String) {
+        
+        print("starting database load")
+        container?.performBackgroundTask { [weak self] context in
+                //if self?.searchText != nil {
+                    //let matches = try? DiaryData.readDiary(in: context, recent: (self?.searchText!)!)
+                    let matches = try? DiaryData.readDiary(in: context, recent: query)
+                    print("matches \(matches)")
+                    self?.insertDiarys(matches!)
+                //}
+            try? context.save()
+            print("done loading database")
+            self?.tableView.reloadData()
+            //self?.printDatabaseStatistics()
+        }
+    }
+    
+    
     
     
     
@@ -111,7 +121,7 @@ class DiaryTableViewController: UITableViewController, UITextFieldDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Diary", for: indexPath)
         
         let diary: Diary = diarys[indexPath.section][indexPath.row]
-        
+        print("new Diary \(diary)")
         if let diaryCell = cell as? DiaryTableViewCell {
             diaryCell.diary = diary
         }
