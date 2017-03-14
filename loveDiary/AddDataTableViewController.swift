@@ -8,31 +8,86 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import MapKit
 
-class AddDataTableViewController: UITableViewController {
+
+class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
+    var returnUserDict: NSDictionary? = nil
+    let myLocationManager = CLLocationManager()
+    
+    @IBAction func getCurrentLocation(_ sender: UIButton) {
+        mapView.showsUserLocation = true
+        locationLabel.text = NSNumber(value: (myLocationManager.location?.coordinate.latitude)! as Double).stringValue + " " + NSNumber(value: (myLocationManager.location?.coordinate.longitude)! as Double).stringValue
+        //locationLabel.text = "fuck"
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        manager.stopUpdatingLocation()
+        
+        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
+        let span = MKCoordinateSpanMake(0.002,0.002)
+        let region = MKCoordinateRegion(center: coordinations, span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
+    
+    
+    
+    @IBAction func checkUser(_ sender: UIButton) {
+        if let username = nameLabel.text {
+            container?.performBackgroundTask { [weak self] context in
+                let match = try? UserData.findUser(in: context, recent: username)
+                if match != nil {
+                    self?.returnUserDict = NSDictionary(objects: [username as NSString?, match??.tweetName as NSString?] as [NSString?], forKeys: ["screen_name", "tweet_name"] as [NSString])
+                    print("return Dict \(self?.returnUserDict)")
+                }
+                try? context.save()
+                self?.printDatabaseStatistics()
+            }
+        }
+    }
+    
+    
+    
+    
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
-    @IBOutlet weak var dateLabel: UITextField!
+    
+    
+    @IBOutlet weak var dateLabel: UIDatePicker!
+    
+    
     @IBOutlet weak var moodControl: UISegmentedControl!
     @IBOutlet weak var textLabel: UITextField!
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
     
     private func updateDiary() {
         let userName = nameLabel.text  as NSString?
         let location = locationLabel.text as NSString?
-        let date = dateLabel.text as NSString?
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date =
+            formatter.string(from: dateLabel.date)
+        
+
         let identifier = (Date().ticks as NSNumber).stringValue as NSString
         let text = textLabel.text as NSString?
         let moodList = ["Happy", "Sad", "Angry"]
         let mood = moodList[moodControl.selectedSegmentIndex]
         
-        let userDict : NSDictionary = NSDictionary(objects: [userName] as [NSString?], forKeys: ["screen_name"] as [NSString])
         
         let Keys : [NSString] = ["user", "text", "date", "location", "identifier", "mood"]
-        let Values : [Any] = [userDict,text!, date!, location!, identifier, mood]
+        let Values : [Any] = [returnUserDict!,text!, date, location!, identifier, mood]
+        print ("important now \(returnUserDict)")
         let dict : NSDictionary = NSDictionary(objects: Values, forKeys:Keys)
         updateDatabase(with: [Diary(data: dict)!], for: userName!)
         
@@ -48,7 +103,7 @@ class AddDataTableViewController: UITableViewController {
         print("starting database load")
         container?.performBackgroundTask { [weak self] context in
             for diaryInfo in diarys {
-                    let _ = try? DiaryData.findOrCreateDiary(matching: diaryInfo, in: context, recent: query as String)
+                let _ = try? DiaryData.findOrCreateDiary(matching: diaryInfo, in: context, recent: query as String)
             }
             try? context.save()
             print("done loading database")
@@ -85,14 +140,27 @@ class AddDataTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Ask for Authorisation from the User.
+        self.myLocationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.myLocationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            myLocationManager.delegate = self
+            myLocationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            myLocationManager.startUpdatingLocation()
+        }
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -100,7 +168,6 @@ class AddDataTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        updateDiary()
         var destinationViewController = segue.destination
         //if it a navigationController, turn it to a UIcontroller
         if let navigationController = destinationViewController as? UINavigationController {
@@ -110,7 +177,9 @@ class AddDataTableViewController: UITableViewController {
         if let searchViewController = destinationViewController as? DiaryTableViewController {
             //Though we only have one segue, we still use identifier
             if segue.identifier == "showAll" {
-                searchViewController.searchText = "all"
+                print("start update diary")
+                updateDiary()
+                searchViewController.searchText = nil //"all"
             }
         }
     }
@@ -128,7 +197,7 @@ class AddDataTableViewController: UITableViewController {
         //print("false")
         return false
     }
-
+    
 }
 
 

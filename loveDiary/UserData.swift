@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 class UserData: NSManagedObject {
-    static func findOrCreateUser(matching query: String, in context: NSManagedObjectContext) throws -> UserData
+    static func findOrCreateUser(matching userInfo: User, in context: NSManagedObjectContext, recent query: String) throws -> UserData
     {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
         if query != "all" {
@@ -30,8 +30,29 @@ class UserData: NSManagedObject {
         
         let returnUser = UserData(context: context)
         returnUser.screenName = query
+        returnUser.tweetName = userInfo.tweetName
         //print("new user query with \(query)")
         return returnUser
     }
+    
+    
+    
+    static func findUser(in context: NSManagedObjectContext, recent query: String) throws -> UserData?
+    {
+        let request: NSFetchRequest<UserData> = UserData.fetchRequest()
+        request.predicate = NSPredicate(format: "screenName = %@", query)
+        do {
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                assert(matches.count == 1, "Query.findOrCreateTwitterUser -- database inconsistency!")
+                return matches[0]
+            }
+        } catch {
+            throw error
+        }
+        return nil
+    }
+    
+    
     
 }

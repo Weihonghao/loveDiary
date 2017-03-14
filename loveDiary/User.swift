@@ -13,20 +13,23 @@ import Foundation
 public struct User
 {
     public let screenName: String
+    public let tweetName: String
     //public let profileImageURL: URL?
     
     // MARK: - Internal Implementation
     
     init?(data: NSDictionary?) {
         guard
-            let screenName = data?.string(forKeyPath: DiaryKey.screenName)
+            let screenName = data?.string(forKeyPath: DiaryKey.screenName),
+            let tweetName = data?.string(forKeyPath: DiaryKey.tweetName)
             //let id = data?.string(forKeyPath: DiaryKey.identifier)
         else {
                 return nil
         }
         
         self.screenName = screenName
-        print("\(screenName)")
+        self.tweetName = tweetName
+        print("\(screenName) \(tweetName)")
         //self.profileImageURL = data?.url(forKeyPath: DiaryKey.profileImageURL)
         
     }
@@ -34,6 +37,7 @@ public struct User
     
     struct DiaryKey {
         static let screenName = "screen_name"
+        static let tweetName = "tweet_name"
         //static let identifier = "id_str"
         //static let profileImageURL = "profile_image_url"
     }

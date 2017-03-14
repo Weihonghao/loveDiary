@@ -29,7 +29,7 @@ class DiaryData: NSManagedObject {
         newDiary.location = diaryInfo.location
         newDiary.date = diaryInfo.date
         newDiary.mood = diaryInfo.mood
-        newDiary.user = try? UserData.findOrCreateUser(matching: diaryInfo.user.screenName, in: context)
+        newDiary.user = try? UserData.findOrCreateUser(matching:diaryInfo.user, in: context, recent: diaryInfo.user.screenName)
         print("user \(newDiary.user)")
         //newDiary.query = try? .findOrCreateRecent(matching: queryLower, in: context)
     }

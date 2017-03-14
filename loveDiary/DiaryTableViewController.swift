@@ -26,7 +26,6 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
     
     @IBOutlet weak var searchTextField: UITextField!
     
-    
     // when the return (i.e. Search) button is pressed in the keyboard
     // we go off to search for the text in the searchTextField
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -39,6 +38,7 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
     
     var searchText: String? {
         didSet {
+            print("start updating UI")
             updateUI()
             title = searchText
         }
