@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import MapKit
+import Photos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
