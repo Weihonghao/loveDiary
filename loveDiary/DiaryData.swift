@@ -33,35 +33,5 @@ class DiaryData: NSManagedObject {
         print("user \(newDiary.user)")
         //newDiary.query = try? .findOrCreateRecent(matching: queryLower, in: context)
     }
-    
-    /*class func readDiary(in context: NSManagedObjectContext, recent query: String) throws -> [Diary]
-    {
-        let request: NSFetchRequest<DiaryData> = DiaryData.fetchRequest()
-        if query != "all" {
-            request.predicate = NSPredicate(format:"user.screenName = %@",query)
-        }
-        do {
-            let matches = try context.fetch(request)
-            var matchList = [Diary]()
-            for match in matches {
-                //let userName = (try? UserData.findOrCreateUser(matching: query, in: context))?.screenName
-                let userName = match.user?.screenName
-                let userDict : NSDictionary = NSDictionary(objects: [userName ?? "No user"], forKeys: ["screen_name"] as [NSString])
-                
-                let text = match.text
-                let date = match.date
-                let location = match.location
-                let identifier = match.id
-                let mood = match.mood
-                let Keys : [NSString] = ["user", "text", "date", "location", "identifier", "mood"]
-                let Values : [Any] = [userDict,text!, date!, location!, identifier!, mood!]
-                let dict : NSDictionary = NSDictionary(objects: Values, forKeys:Keys)
-                matchList.insert(Diary(data: dict)!, at: 0)
-            }
-            return matchList
-        } catch {
-            throw error
-        }
-    }*/
 
 }
