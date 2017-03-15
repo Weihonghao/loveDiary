@@ -606,16 +606,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="YQV-6K-fdw">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="GMy-WE-184">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            <scopeButtonTitles>
+                                <string>Name</string>
+                                <string>Twitter UserName</string>
+                                <string>All User</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetContactCell" textLabel="Ckl-ld-dmH" detailTextLabel="uDP-nc-Z5e" style="IBUITableViewCellStyleSubtitle" id="EmC-oU-eat">
-                                <rect key="frame" x="0.0" y="58" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EmC-oU-eat" id="bE0-Wj-a45">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -649,7 +652,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Ob7-rH-YwL"/>
                     <connections>
-                        <outlet property="searchTextField" destination="YQV-6K-fdw" id="DQy-F1-Fpf"/>
+                        <outlet property="searchBar" destination="GMy-WE-184" id="nxW-w9-Z5P"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11F-Gd-pPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
