@@ -35,6 +35,34 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
+    @IBAction func takePhoto(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        picker.allowsEditing = false
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        picker.cameraCaptureMode = .photo
+        picker.modalPresentationStyle = .fullScreen
+        present(picker,animated: true,completion: nil)
+        }
+        else {
+            handleNoCamera()
+        }
+    }
+
+    func handleNoCamera() {
+        let alert = UIAlertController(
+            title: "No Camera",
+            message: "You donnot have a camera on a simulator",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil))
+        //alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
+    }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -76,6 +104,55 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
+    func handleNoUserName() {
+        let alert = UIAlertController(
+            title: "No UserName",
+            message: "Type in UserName below and push confirm button to see whether you have registerred",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: {action in
+                self.nameLabel?.text = alert.textFields?.first?.text
+        }))
+        alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "showAll" && self.nameLabel.text == Optional("") {
+            print("hinder segue")
+            handleNoUserName()
+            return false
+        }
+        print("user name here \(self.nameLabel.text)")
+        print(self.nameLabel.text == nil)
+        print(self.nameLabel.text)
+        return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+    }
+    
+    
+    
+    func handleNoSuchUser() {
+        let alert = UIAlertController(
+            title: "No Such User",
+            message: "Please use 'add User' to register, thanks",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: {action in
+                self.nameLabel?.text = alert.textFields?.first?.text
+                self.performSegue(withIdentifier: "addUser", sender: nil)
+        }))
+        //alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
+    }
+    
     
     
     @IBAction func checkUser(_ sender: UIButton) {
@@ -84,10 +161,18 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
                 let match = try? UserData.findUser(in: context, recent: username)
                 if match != nil {
                     self?.returnUserDict = NSDictionary(objects: [username as NSString?, match??.tweetName as NSString?] as [NSString?], forKeys: ["screen_name", "tweet_name"] as [NSString])
+                    //print(match! == nil)
                     print("return Dict \(self?.returnUserDict)")
                 }
                 try? context.save()
                 self?.printDatabaseStatistics()
+                if match != nil, match! == nil {
+                    print("No such User")
+                    DispatchQueue.main.async {
+                    self?.handleNoSuchUser()
+                    }
+                }
+                
             }
         }
     }

@@ -34,8 +34,9 @@ class AddUserTableViewController: UITableViewController {
         
         
         let userDict : NSDictionary = NSDictionary(objects: [userName, tweetName] as [NSString?], forKeys: ["screen_name", "tweet_name"] as [NSString])
-        
-        updateDatabase(with: User(data: userDict)!, for: userName!)
+        if userNameLabel.text != Optional("") {
+            updateDatabase(with: User(data: userDict)!, for: userName!)
+        }
         
     }
     

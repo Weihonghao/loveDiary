@@ -329,6 +329,14 @@
                                                         <action selector="photofromLibrary:" destination="ocA-zP-lO0" eventType="touchUpInside" id="nmA-c0-UWD"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E03-qo-xBc">
+                                                    <rect key="frame" x="30" y="8" width="58" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Camera "/>
+                                                    <connections>
+                                                        <action selector="takePhoto:" destination="ocA-zP-lO0" eventType="touchUpInside" id="Vmj-So-sIK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
