@@ -12,11 +12,49 @@ import CoreLocation
 import MapKit
 
 
-class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate {
+class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    let picker = UIImagePickerController()
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBAction func photofromLibrary(_ sender: UIButton) {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func photoFromLibraryPop(_ sender: UIBarButtonItem) {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        picker.modalPresentationStyle = .popover
+        present(picker, animated: true, completion: nil)
+        picker.popoverPresentationController?.barButtonItem = sender
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+    
+    
     
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-
+    
     var returnUserDict: NSDictionary? = nil
     let myLocationManager = CLLocationManager()
     
@@ -78,7 +116,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         let date =
             formatter.string(from: dateLabel.date)
         
-
+        
         let identifier = (Date().ticks as NSNumber).stringValue as NSString
         let text = textLabel.text as NSString?
         let moodList = ["Happy", "Sad", "Angry"]
@@ -140,7 +178,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        picker.delegate = self
         // Ask for Authorisation from the User.
         self.myLocationManager.requestAlwaysAuthorization()
         
@@ -152,7 +190,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             myLocationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             myLocationManager.startUpdatingLocation()
         }
-
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

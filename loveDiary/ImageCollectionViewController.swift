@@ -68,16 +68,16 @@ class ImageCollectionViewController: UICollectionViewController {
         let identify:String = "DesignViewCell"
         // 获取设计的单元格，不需要再动态添加界面元素
         let cell = (self.collectionView?.dequeueReusableCell(
-            withReuseIdentifier: identify, for: indexPath))! as UICollectionViewCell
+            withReuseIdentifier: identify, for: indexPath))! as! ImageCollectionViewCell //UICollectionViewCell
         
         let asset = self.assetsFetchResults[indexPath.row]
         //获取缩略图
         self.imageManager.requestImage(for: asset, targetSize: assetGridThumbnailSize,
                                        contentMode: PHImageContentMode.aspectFill,
                                        options: nil) { (image, nfo) in
-                                        (cell.contentView.viewWithTag(1) as! UIImageView)
+                                        (cell.imageView)
                                             .image = image
-                                        print(image)
+                                        //print(image)
         }
         return cell
     }
@@ -96,10 +96,9 @@ class ImageCollectionViewController: UICollectionViewController {
         // navigationController跳转到detailViewController
         self.navigationController!.pushViewController(detailViewController,
                                                       animated:true)
-    }*/
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
+    }*/
 }

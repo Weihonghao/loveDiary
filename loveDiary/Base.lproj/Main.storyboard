@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -300,6 +301,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVI-Tf-mEy" id="qCn-XN-Gvg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EgL-7w-G1m">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="146"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="EgL-7w-G1m" secondAttribute="bottom" id="3SJ-8z-PxS"/>
+                                                <constraint firstItem="EgL-7w-G1m" firstAttribute="top" secondItem="qCn-XN-Gvg" secondAttribute="topMargin" id="CbV-uj-cEx"/>
+                                                <constraint firstItem="EgL-7w-G1m" firstAttribute="leading" secondItem="qCn-XN-Gvg" secondAttribute="leading" id="YOw-hg-FV5"/>
+                                                <constraint firstAttribute="trailing" secondItem="EgL-7w-G1m" secondAttribute="trailing" id="qTt-x0-uYG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="tTU-Gu-jOr">
@@ -313,6 +325,9 @@
                                                     <rect key="frame" x="188" y="12" width="164" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Add Image From photos"/>
+                                                    <connections>
+                                                        <action selector="photofromLibrary:" destination="ocA-zP-lO0" eventType="touchUpInside" id="nmA-c0-UWD"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -351,24 +366,34 @@
                             <outlet property="delegate" destination="ocA-zP-lO0" id="Hn5-BI-YuI"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="xwf-p3-zy9">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ka7-Vs-3ee">
-                            <connections>
-                                <action selector="cancel:" destination="ocA-zP-lO0" id="1j9-ZH-SyP"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Cancel" id="Ka7-Vs-3ee">
+                                <connections>
+                                    <action selector="cancel:" destination="ocA-zP-lO0" id="1j9-ZH-SyP"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add  Pictures as PopOver" id="srF-NA-rIE">
+                                <connections>
+                                    <action selector="photoFromLibraryPop:" destination="ocA-zP-lO0" id="04r-Rh-I9o"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Add User" id="zJW-N2-uvh">
                             <connections>
                                 <segue destination="Fh1-YU-MRZ" kind="show" identifier="addUser" id="gq3-az-Mwf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateLabel" destination="OSi-mM-PI2" id="OR6-aX-xSm"/>
                         <outlet property="locationLabel" destination="RQ7-GB-PDS" id="rml-0z-1ga"/>
                         <outlet property="mapView" destination="YtV-Ya-DUI" id="org-f1-bwQ"/>
                         <outlet property="moodControl" destination="Jhb-VB-Jes" id="10o-Wc-tax"/>
                         <outlet property="nameLabel" destination="GDx-Zi-jac" id="rHU-dv-V6j"/>
+                        <outlet property="profileImageView" destination="EgL-7w-G1m" id="iRb-Tx-MpA"/>
                         <outlet property="textLabel" destination="En2-XA-oZs" id="pRt-Te-0Lz"/>
                     </connections>
                 </tableViewController>
@@ -391,14 +416,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DesignViewCell" id="opy-3B-1u5">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="DesignViewCell" id="opy-3B-1u5" customClass="ImageCollectionViewCell" customModule="loveDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-xt-NuX">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-xt-NuX">
                                             <rect key="frame" x="-95" y="-39" width="240" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -961,8 +986,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g4v-55-uAe"/>
-        <segue reference="SBM-aP-Vgj"/>
         <segue reference="Wej-bP-Ajr"/>
+        <segue reference="HKH-83-2Py"/>
+        <segue reference="SBM-aP-Vgj"/>
     </inferredMetricsTieBreakers>
 </document>
