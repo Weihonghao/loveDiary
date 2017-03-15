@@ -11,6 +11,7 @@ import CoreData
 import CoreLocation
 import MapKit
 import Photos
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert]) {
+            granted, error in
+            if granted {
+                print("Approval granted to send notifications")
+            }
+        }
         return true
     }
 

@@ -525,6 +525,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Submit"/>
                                                     <connections>
+                                                        <action selector="submitRegister:" destination="Fh1-YU-MRZ" eventType="touchUpInside" id="Rua-vB-gH4"/>
                                                         <segue destination="ocA-zP-lO0" kind="show" identifier="backToNewDiary" id="cgK-WY-qSq"/>
                                                     </connections>
                                                 </button>
