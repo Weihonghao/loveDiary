@@ -11,8 +11,8 @@ import CoreData
 import CoreLocation
 import MapKit
 
-
 class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
     
     let picker = UIImagePickerController()
     
@@ -127,9 +127,9 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             handleNoUserName()
             return false
         }
-        print("user name here \(self.nameLabel.text)")
-        print(self.nameLabel.text == nil)
-        print(self.nameLabel.text)
+        //print("user name here \(self.nameLabel.text)")
+        //print(self.nameLabel.text == nil)
+        //print(self.nameLabel.text)
         return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
     }
     
@@ -155,6 +155,23 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     
+    func handleHasUser() {
+        let alert = UIAlertController(
+            title: "User registered",
+            message: "Please finish other blanks",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil))
+        //alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
+    }
+    
+    
+    
     @IBAction func checkUser(_ sender: UIButton) {
         if let username = nameLabel.text {
             container?.performBackgroundTask { [weak self] context in
@@ -170,6 +187,10 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
                     print("No such User")
                     DispatchQueue.main.async {
                     self?.handleNoSuchUser()
+                    }
+                } else if match != nil, match! != nil {
+                    DispatchQueue.main.async {
+                        self?.handleHasUser()
                     }
                 }
                 
@@ -290,7 +311,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var destinationViewController = segue.destination
         //if it a navigationController, turn it to a UIcontroller
         if let navigationController = destinationViewController as? UINavigationController {
@@ -302,9 +323,16 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             if segue.identifier == "showAll" {
                 print("start update diary")
                 updateDiary()
-                searchViewController.searchText = nil //"all"
+                print("finish debug here")
+                //searchViewController.searchText = nil //"all"
             }
         }
+    }*/
+    
+    
+    @IBAction func backToTab(_ sender: UIButton) {
+        updateDiary()
+        presentingViewController?.dismiss(animated: true)
     }
     
     

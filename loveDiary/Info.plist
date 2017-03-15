@@ -2,10 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	
-    <key>NSCameraUsageDescription</key>
-    <string>Set the background of the app with your beautiful photography</string>
-    <key>NSPhotoLibraryUsageDescription</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Set the background of the app with your beautiful photography</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to your photos</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>For use in background</string>
@@ -55,5 +54,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSContactsUsageDescription</key>
+	<string>This app requires contacts from phone book</string>
 </dict>
 </plist>

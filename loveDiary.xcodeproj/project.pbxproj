@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F47867F11E7A08C900AA52AA /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F01E7A08C900AA52AA /* FileSystem.swift */; };
 		F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		F48C90FA1E7784DA00BFFF0B /* AddUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */; };
 		F48C90FC1E784C2600BFFF0B /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90FB1E784C2600BFFF0B /* ImageCollectionViewController.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F47867F01E7A08C900AA52AA /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserTableViewController.swift; sourceTree = "<group>"; };
 		F48C90FB1E784C2600BFFF0B /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				F48C90FB1E784C2600BFFF0B /* ImageCollectionViewController.swift */,
 				F48C90FD1E7856F400BFFF0B /* ImageCollectionViewCell.swift */,
 				F48C910F1E78A8D900BFFF0B /* TweetContactTableViewController.swift */,
+				F47867F01E7A08C900AA52AA /* FileSystem.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */,
 				F4ACB56F1E771AD300E4B4DE /* FetchedResultsTableViewController.swift in Sources */,
 				F48C910A1E788B0400BFFF0B /* DetailTableViewController.swift in Sources */,
+				F47867F11E7A08C900AA52AA /* FileSystem.swift in Sources */,
 				F4C902B91E76074E005C8E38 /* DiaryTableViewCell.swift in Sources */,
 				F4C902BF1E761591005C8E38 /* User.swift in Sources */,
 				F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */,
