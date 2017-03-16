@@ -14,6 +14,9 @@ import MapKit
 class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     
+    var myFileSystem: MyFileSystem = MyFileSystem()
+    
+    
     let picker = UIImagePickerController()
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -37,17 +40,17 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     @IBAction func takePhoto(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-        picker.allowsEditing = false
-        picker.sourceType = UIImagePickerControllerSourceType.camera
-        picker.cameraCaptureMode = .photo
-        picker.modalPresentationStyle = .fullScreen
-        present(picker,animated: true,completion: nil)
+            picker.allowsEditing = false
+            picker.sourceType = UIImagePickerControllerSourceType.camera
+            picker.cameraCaptureMode = .photo
+            picker.modalPresentationStyle = .fullScreen
+            present(picker,animated: true,completion: nil)
         }
         else {
             handleNoCamera()
         }
     }
-
+    
     func handleNoCamera() {
         let alert = UIAlertController(
             title: "No Camera",
@@ -68,13 +71,20 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
-
+    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.image = chosenImage
+        let imageData = UIImagePNGRepresentation(chosenImage)!
+        let dir = "/myImage/" + String(myFileSystem.fileNumber("myImage")) + ".png"
+        let imageURL = URL(fileURLWithPath: myFileSystem.getDir(dir))
+        print("\(imageURL)")
+        DispatchQueue.global().async {
+            try! imageData.write(to: imageURL)
+        }
         dismiss(animated:true, completion: nil)
     }
     
@@ -186,7 +196,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
                 if match != nil, match! == nil {
                     print("No such User")
                     DispatchQueue.main.async {
-                    self?.handleNoSuchUser()
+                        self?.handleNoSuchUser()
                     }
                 } else if match != nil, match! != nil {
                     DispatchQueue.main.async {
@@ -297,6 +307,11 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             myLocationManager.startUpdatingLocation()
         }
         
+        if myFileSystem.checkDirExist("myImage") == false {
+            myFileSystem.createDir("myImage")
+        }
+        //print(myFileSystem.checkDirExist("myImage"))
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -312,22 +327,22 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var destinationViewController = segue.destination
-        //if it a navigationController, turn it to a UIcontroller
-        if let navigationController = destinationViewController as? UINavigationController {
-            destinationViewController = navigationController.visibleViewController ?? destinationViewController
-        }
-        //go back to the search page when trigger hashtag and userMentioned
-        if let searchViewController = destinationViewController as? DiaryTableViewController {
-            //Though we only have one segue, we still use identifier
-            if segue.identifier == "showAll" {
-                print("start update diary")
-                updateDiary()
-                print("finish debug here")
-                //searchViewController.searchText = nil //"all"
-            }
-        }
-    }*/
+     var destinationViewController = segue.destination
+     //if it a navigationController, turn it to a UIcontroller
+     if let navigationController = destinationViewController as? UINavigationController {
+     destinationViewController = navigationController.visibleViewController ?? destinationViewController
+     }
+     //go back to the search page when trigger hashtag and userMentioned
+     if let searchViewController = destinationViewController as? DiaryTableViewController {
+     //Though we only have one segue, we still use identifier
+     if segue.identifier == "showAll" {
+     print("start update diary")
+     updateDiary()
+     print("finish debug here")
+     //searchViewController.searchText = nil //"all"
+     }
+     }
+     }*/
     
     
     @IBAction func backToTab(_ sender: UIButton) {
