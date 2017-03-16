@@ -21,7 +21,7 @@ class HeartUIVIew: UIView {
     var heartCurvature: Double = 0.6 { didSet { setNeedsDisplay() } }
     
     @IBInspectable
-    var direction: Bool = false { didSet { setNeedsDisplay() } }
+    var direction: Bool = true { didSet { setNeedsDisplay() } }
     
     @IBInspectable
     var scale: CGFloat = 0.9 { didSet { setNeedsDisplay() } }
