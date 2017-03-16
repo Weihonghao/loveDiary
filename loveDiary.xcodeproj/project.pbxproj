@@ -11,6 +11,8 @@
 		F47867F71E7A264D00AA52AA /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */; };
 		F47867F91E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */; };
 		F47867FB1E7A463500AA52AA /* PhotoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867FA1E7A463500AA52AA /* PhotoCollectionReusableView.swift */; };
+		F47867FD1E7ADCBD00AA52AA /* BlurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */; };
+		F47868011E7AF56A00AA52AA /* HeartUIVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */; };
 		F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		F48C90FA1E7784DA00BFFF0B /* AddUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */; };
 		F48C91001E78890A00BFFF0B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48C90FF1E78890A00BFFF0B /* Twitter.framework */; };
@@ -57,6 +59,8 @@
 		F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		F47867FA1E7A463500AA52AA /* PhotoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionReusableView.swift; sourceTree = "<group>"; };
+		F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewController.swift; sourceTree = "<group>"; };
+		F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartUIVIew.swift; sourceTree = "<group>"; };
 		F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserTableViewController.swift; sourceTree = "<group>"; };
 		F48C90FF1E78890A00BFFF0B /* Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,8 @@
 				F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */,
 				F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */,
 				F47867FA1E7A463500AA52AA /* PhotoCollectionReusableView.swift */,
+				F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */,
+				F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -239,6 +245,7 @@
 				F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */,
 				F48C910E1E788B3000BFFF0B /* WebViewController.swift in Sources */,
 				F4C902BB1E76099A005C8E38 /* Diary.swift in Sources */,
+				F47867FD1E7ADCBD00AA52AA /* BlurViewController.swift in Sources */,
 				F48C910C1E788B2600BFFF0B /* pictureViewController.swift in Sources */,
 				F4C902B71E760579005C8E38 /* DiaryTableViewController.swift in Sources */,
 				F47867F91E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift in Sources */,
@@ -247,6 +254,7 @@
 				F4C902BD1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */,
 				F48C91041E788AA200BFFF0B /* TweetTableViewController.swift in Sources */,
+				F47868011E7AF56A00AA52AA /* HeartUIVIew.swift in Sources */,
 				F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
 				F4C902C11E763913005C8E38 /* DiaryData.swift in Sources */,
 				F4ACB56F1E771AD300E4B4DE /* FetchedResultsTableViewController.swift in Sources */,

@@ -106,6 +106,22 @@ class PhotoCollectionViewController: UICollectionViewController, UICollectionVie
         return cell
     }
 
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var destinationViewController = segue.destination
+        //if it a navigationController, turn it to a UIcontroller
+        if let navigationController = destinationViewController as? UINavigationController {
+            destinationViewController = navigationController.visibleViewController ?? destinationViewController
+        }
+        if let scrollViewController = destinationViewController as? BlurViewController, let currentCell = sender as? PhotoCollectionViewCell {
+            //Though we only have one segue, we still use identifier
+            if segue.identifier == "showLarge" {
+                scrollViewController.photoNumber = currentCell.photoNumber
+            }
+        }
+    }
     // MARK: UICollectionViewDelegate
 
     /*

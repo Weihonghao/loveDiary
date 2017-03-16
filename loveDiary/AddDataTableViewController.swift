@@ -110,7 +110,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         let dir = "myImage/" + String(myFileSystem.fileNumber("myImage")) + ".png"
         let imageURL = URL(fileURLWithPath: myFileSystem.getDir(dir))
         print("\(imageURL)")
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async {
             try! imageData.write(to: imageURL)
         }
         dismiss(animated:true, completion: nil)
