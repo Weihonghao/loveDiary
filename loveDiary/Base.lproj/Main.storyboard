@@ -343,8 +343,26 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="AqB-Oh-gpr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="OTu-ZR-0i9">
                                         <rect key="frame" x="0.0" y="847" width="375" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OTu-ZR-0i9" id="rq1-3H-Sh9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk2-T5-YFe">
+                                                    <rect key="frame" x="71" y="12" width="232" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Delete Current Pictures"/>
+                                                    <connections>
+                                                        <action selector="deletePicture:" destination="ocA-zP-lO0" eventType="touchUpInside" id="7XN-14-FnH"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="AqB-Oh-gpr">
+                                        <rect key="frame" x="0.0" y="903" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqB-Oh-gpr" id="a0d-zA-grW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -361,11 +379,19 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="OTu-ZR-0i9">
-                                        <rect key="frame" x="0.0" y="903" width="375" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="PM9-QT-8x1">
+                                        <rect key="frame" x="0.0" y="959" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OTu-ZR-0i9" id="rq1-3H-Sh9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PM9-QT-8x1" id="qW5-xf-Ksd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="u5H-Rw-TGf">
+                                        <rect key="frame" x="0.0" y="1015" width="375" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u5H-Rw-TGf" id="qCz-bo-gPY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -411,47 +437,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmJ-hj-auF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2962.4000000000001" y="-56.221889055472268"/>
-        </scene>
-        <!--Images-->
-        <scene sceneID="rj4-hJ-Dsx">
-            <objects>
-                <collectionViewController id="fZr-W3-dyi" customClass="ImageCollectionViewController" customModule="loveDiary" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="frw-kq-q7y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b6T-rn-5KV">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="DesignViewCell" id="opy-3B-1u5" customClass="ImageCollectionViewCell" customModule="loveDiary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-xt-NuX">
-                                            <rect key="frame" x="-95" y="-39" width="240" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="fZr-W3-dyi" id="zwF-dd-1ju"/>
-                            <outlet property="delegate" destination="fZr-W3-dyi" id="tTY-vb-14N"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Images" id="uZw-Rn-E9k"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bh3-Ke-W7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7109.6000000000004" y="873.91304347826099"/>
         </scene>
         <!--Add User Table View Controller-->
         <scene sceneID="Hau-5I-hxf">
@@ -709,6 +694,7 @@
                     <connections>
                         <segue destination="Inh-Kl-IJs" kind="relationship" relationship="viewControllers" id="g4v-55-uAe"/>
                         <segue destination="qNG-dx-SCD" kind="relationship" relationship="viewControllers" id="0q9-D8-dBn"/>
+                        <segue destination="uck-jZ-Xrp" kind="relationship" relationship="viewControllers" id="tLj-v9-Ie0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tI-aX-zWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -732,24 +718,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0o-zp-dT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2023.2" y="-56.221889055472268"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="U5c-eP-tEL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Udz-pg-85q" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YP0-DL-A1m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fZr-W3-dyi" kind="relationship" relationship="rootViewController" id="BKf-cQ-4Il"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fHv-kW-7Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6258.3999999999996" y="873.91304347826099"/>
         </scene>
         <!--Tweet Contact Table View Controller-->
         <scene sceneID="BNA-ux-b2h">
@@ -1039,6 +1007,75 @@
             </objects>
             <point key="canvasLocation" x="4783.1999999999998" y="873.91304347826099"/>
         </scene>
+        <!--Photo Collection View Controller-->
+        <scene sceneID="R1z-3g-3Lv">
+            <objects>
+                <collectionViewController id="iIH-U8-SXc" customClass="PhotoCollectionViewController" customModule="loveDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="0Yf-OT-GQ0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FAs-RA-SdO">
+                            <size key="itemSize" width="200" height="200"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="ZkL-61-liT" customClass="PhotoCollectionViewCell" customModule="loveDiary" customModuleProvider="target">
+                                <rect key="frame" x="88" y="50" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Zc-Kf-mkv">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3Zc-Kf-mkv" secondAttribute="trailing" id="1SZ-4j-eDD"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Zc-Kf-mkv" secondAttribute="bottom" id="F2g-I2-7p9"/>
+                                    <constraint firstItem="3Zc-Kf-mkv" firstAttribute="top" secondItem="ZkL-61-liT" secondAttribute="top" id="Uj5-h4-OqV"/>
+                                    <constraint firstItem="3Zc-Kf-mkv" firstAttribute="leading" secondItem="ZkL-61-liT" secondAttribute="leading" id="pTu-01-85k"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="3Zc-Kf-mkv" id="q8C-FB-xal"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoHeader" id="fuk-Lc-fDR" customClass="PhotoCollectionReusableView" customModule="loveDiary" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpF-jn-s5g">
+                                    <rect key="frame" x="75" y="15" width="224" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="WpF-jn-s5g" firstAttribute="centerY" secondItem="fuk-Lc-fDR" secondAttribute="centerY" id="7d2-EG-KcD"/>
+                                <constraint firstItem="WpF-jn-s5g" firstAttribute="leading" secondItem="fuk-Lc-fDR" secondAttribute="leadingMargin" constant="67" id="dN2-mF-dua"/>
+                                <constraint firstItem="WpF-jn-s5g" firstAttribute="centerX" secondItem="fuk-Lc-fDR" secondAttribute="centerX" id="w3k-Et-O0r"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="photoHeaderLabel" destination="WpF-jn-s5g" id="kSN-A6-RwX"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="iIH-U8-SXc" id="2uL-gt-2bZ"/>
+                            <outlet property="delegate" destination="iIH-U8-SXc" id="MFk-oV-Oqa"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="okC-HE-JJh"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ob8-aT-hfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="943" y="1753"/>
+        </scene>
         <!--webView-->
         <scene sceneID="Glg-2m-rti">
             <objects>
@@ -1111,6 +1148,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lD4-M0-wde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="57" y="761"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Ved-eh-FW6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uck-jZ-Xrp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="CNT-ke-Tuf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6RH-nX-Uel">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iIH-U8-SXc" kind="relationship" relationship="rootViewController" id="28s-64-ZtR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bxN-Wx-ZPY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-132" y="1684"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -58,6 +58,16 @@ class MyFileSystem {
         return 0
     }
     
+    public func deleteFile(_ dir: String) {
+        let dataPath = getDir(dir)
+        print("herhhrhehehe \(dataPath)")
+        do {
+            try FileManager.default.removeItem(atPath: dataPath)
+        } catch let err {
+            print("\(err)")
+        }
+    }
+    
 }
 
 

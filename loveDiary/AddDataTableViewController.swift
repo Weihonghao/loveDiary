@@ -20,6 +20,34 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     let picker = UIImagePickerController()
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBAction func deletePicture(_ sender: UIButton) {
+        let pNumber =  myFileSystem.fileNumber("myImage") - 1
+        let dir = "myImage/" + String(describing: pNumber) + ".png"
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.myFileSystem.deleteFile(dir)
+        }
+        
+        handleDelete(dir)
+    }
+    
+    
+    func handleDelete(_ name:String) {
+        let m = "You have deleted image " + name
+        let alert = UIAlertController(
+            title: "Delete Image",
+            message: m,
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil))
+        //alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
+    }
+    
+    
     @IBAction func photofromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -79,10 +107,10 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.image = chosenImage
         let imageData = UIImagePNGRepresentation(chosenImage)!
-        let dir = "/myImage/" + String(myFileSystem.fileNumber("myImage")) + ".png"
+        let dir = "myImage/" + String(myFileSystem.fileNumber("myImage")) + ".png"
         let imageURL = URL(fileURLWithPath: myFileSystem.getDir(dir))
         print("\(imageURL)")
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             try! imageData.write(to: imageURL)
         }
         dismiss(animated:true, completion: nil)
