@@ -31,6 +31,11 @@ class PhotoCollectionViewController: UICollectionViewController, UICollectionVie
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView?.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,6 +97,7 @@ class PhotoCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         let number = myFileSystem.fileNumber("myImage")
+        print("cell number \(number)")
         return number
     }
 

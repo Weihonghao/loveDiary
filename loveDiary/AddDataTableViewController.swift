@@ -101,7 +101,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : AnyObject])
+                               didFinishPickingMediaWithInfo info: [String : Any])
     {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         profileImageView.contentMode = .scaleAspectFit

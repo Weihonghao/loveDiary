@@ -8,12 +8,12 @@
 
 import UIKit
 
-class HeartViewController: UIViewController {
+class HeartViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     /*var expression = FacialExpression(eyes: .open, mouth: .neutral) {
-        didSet {
-            updateUI()
-        }
-    }*/
+     didSet {
+     updateUI()
+     }
+     }*/
     
     
     
@@ -24,11 +24,11 @@ class HeartViewController: UIViewController {
             heartView.addGestureRecognizer(pinchRecognizer)
             
             /*let panRecognizer = UIPanGestureRecognizer(target: heartView, action: #selector(HeartUIVIew.panMoveOrigin(byReactingTo:)))
-            heartView.addGestureRecognizer(panRecognizer)*/
+             heartView.addGestureRecognizer(panRecognizer)*/
             
             /*let tapRecognizer = UITapGestureRecognizer(target: heartView, action: #selector(HeartUIVIew.doubleTapChangeDirection(byReactingTo:)))
-            tapRecognizer.numberOfTapsRequired = 2
-            heartView.addGestureRecognizer(tapRecognizer)*/
+             tapRecognizer.numberOfTapsRequired = 2
+             heartView.addGestureRecognizer(tapRecognizer)*/
             
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(beatHeart))
             tapRecognizer.numberOfTapsRequired = 2
@@ -44,19 +44,19 @@ class HeartViewController: UIViewController {
         }
     }
     
-
+    
     
     /*private func updateUI()
-    {
-        
-        heartView?.heartCurvature = heartElementCurvature ?? 0.0
-        heartView?.direction = heartElementDirection ?? true
-    }*/
+     {
+     
+     heartView?.heartCurvature = heartElementCurvature ?? 0.0
+     heartView?.direction = heartElementDirection ?? true
+     }*/
     
-        /*var heartElementDirection: Bool?
-        var heartElementRadius: CGFloat?
-        var heartElementCenter: CGPoint?
-        var heartElementCurvature: Double?*/
+    /*var heartElementDirection: Bool?
+     var heartElementRadius: CGFloat?
+     var heartElementCenter: CGPoint?
+     var heartElementCurvature: Double?*/
     
     
     private struct HeartBeat {
@@ -70,28 +70,53 @@ class HeartViewController: UIViewController {
     
     let squareSize = HeartBeat.scale * HeartBeat.scale
     
+    
+    
     @objc private func beatHeart() {
-        UIView.animate(
-            withDuration: HeartBeat.segmentDuration,
-            animations: { self.zoomHeart(by: HeartBeat.scale) },
-            completion: { finished in
-                if finished {
-                    UIView.animate(
-                        withDuration: HeartBeat.segmentDuration,
-                        
-                        animations: { self.zoomHeart(by: 1.0 / self.squareSize) },
-                        completion: { finished in
-                            if finished {
-                                UIView.animate(
-                                    withDuration: HeartBeat.segmentDuration,
-                                    animations: { self.zoomHeart(by: HeartBeat.scale) }
-                                )
-                            }
+            /*UIView.animate(withDuration: <#T##TimeInterval#>, delay: <#T##TimeInterval#>, options: <#T##UIViewAnimationOptions#>, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)*/
+            UIView.animate(
+                withDuration: HeartBeat.segmentDuration,
+                animations: { self.zoomHeart(by: HeartBeat.scale) },
+                completion: { finished in
+                    if finished {
+                        UIView.animate(
+                            withDuration: HeartBeat.segmentDuration,
+                            
+                            animations: { self.zoomHeart(by: 1.0 / self.squareSize) },
+                            completion: { finished in
+                                if finished {
+                                    UIView.animate(
+                                        withDuration: HeartBeat.segmentDuration,
+                                        animations: { self.zoomHeart(by: HeartBeat.scale) }
+                                    )
+                                }
+                        }
+                        )
                     }
-                    )
-                }
+            }
+            )
         }
-        )
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var destinationViewController = segue.destination
+        //if it a navigationController, turn it to a UIcontroller
+        if let navigationController = destinationViewController as? UINavigationController {
+            destinationViewController = navigationController.visibleViewController ?? destinationViewController
+        }
+        //if let popoverViewController = destinationViewController {
+            //as? UITableViewController, let _ = sender as? TweetTableViewCell {
+            //Though we only have one segue, we still use identifier
+        let popoverViewController = destinationViewController
+            if segue.identifier == "popOverMenu" {
+                print("fuck pop up")
+                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+                popoverViewController.popoverPresentationController!.delegate = self
+            
+        }
     }
-
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+        
+    
 }

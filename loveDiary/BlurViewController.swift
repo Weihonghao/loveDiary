@@ -9,11 +9,34 @@
 import UIKit
 
 class BlurViewController: UIViewController {
-
+    
     private var minZoomScale = 0.03
     private var maxZoomScale = 10.0
     
     var myFileSystem = MyFileSystem()
+    
+    @IBAction func printView(_ sender: UIBarButtonItem) {
+        
+        let printInfo = UIPrintInfo(dictionary:nil)
+        printInfo.outputType = UIPrintInfoOutputType.general
+        printInfo.jobName = "Print my image view"
+        
+        // Set up print controller
+        let printController = UIPrintInteractionController.shared
+        printController.printInfo = printInfo
+        
+        // Assign a UIImage version of my UIView as a printing iten
+        printController.printingItem = self.view.turnPicture()
+        
+        // Do it
+        printController.present(from: self.view.frame, in: self.view, animated: true, completionHandler: nil)
+    }
+    
+    
+    
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {presentingViewController?.dismiss(animated: true)
+    }
     
     
     @IBOutlet weak var pictureScrollView: UIScrollView! {
@@ -28,7 +51,7 @@ class BlurViewController: UIViewController {
             pictureScrollView.addSubview(imageView)
         }
     }
-
+    
     fileprivate var imageView = UIImageView()
     
     var photoNumber: Int? {
@@ -97,15 +120,15 @@ class BlurViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         
         /*imageView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
-        imageView.center = view.center
-        view.addSubview(imageView)*/
+         imageView.center = view.center
+         view.addSubview(imageView)*/
         // Do any additional setup after loading the view.
     }
-
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,17 +143,17 @@ class BlurViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension BlurViewController : UIScrollViewDelegate
@@ -140,3 +163,14 @@ extension BlurViewController : UIScrollViewDelegate
     }
 }
 
+extension UIView {
+    func turnPicture() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+}

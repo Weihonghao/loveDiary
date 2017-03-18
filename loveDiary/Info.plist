@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Set the background of the app with your beautiful photography</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Access to your photos</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>For use in background</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For use in foreground</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -33,6 +25,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Set the background of the app with your beautiful photography</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app requires contacts from phone book</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>For use in background</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>For use in foreground</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to your photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -54,7 +56,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSContactsUsageDescription</key>
-	<string>This app requires contacts from phone book</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>requires to share your health data</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>require to update your health data</string>
 </dict>
 </plist>

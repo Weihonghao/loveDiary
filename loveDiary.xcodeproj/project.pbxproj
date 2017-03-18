@@ -14,6 +14,8 @@
 		F47867FD1E7ADCBD00AA52AA /* BlurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */; };
 		F47868011E7AF56A00AA52AA /* HeartUIVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */; };
 		F47868031E7B136B00AA52AA /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868021E7B136B00AA52AA /* HeartViewController.swift */; };
+		F47868071E7CA9D700AA52AA /* ImagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */; };
+		F47868091E7CAC4000AA52AA /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868081E7CAC4000AA52AA /* PageContentViewController.swift */; };
 		F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		F48C90FA1E7784DA00BFFF0B /* AddUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */; };
 		F48C91001E78890A00BFFF0B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48C90FF1E78890A00BFFF0B /* Twitter.framework */; };
@@ -63,6 +65,8 @@
 		F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurViewController.swift; sourceTree = "<group>"; };
 		F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartUIVIew.swift; sourceTree = "<group>"; };
 		F47868021E7B136B00AA52AA /* HeartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
+		F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePageViewController.swift; sourceTree = "<group>"; };
+		F47868081E7CAC4000AA52AA /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserTableViewController.swift; sourceTree = "<group>"; };
 		F48C90FF1E78890A00BFFF0B /* Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +156,8 @@
 				F47867FC1E7ADCBD00AA52AA /* BlurViewController.swift */,
 				F47868001E7AF56A00AA52AA /* HeartUIVIew.swift */,
 				F47868021E7B136B00AA52AA /* HeartViewController.swift */,
+				F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */,
+				F47868081E7CAC4000AA52AA /* PageContentViewController.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47867FB1E7A463500AA52AA /* PhotoCollectionReusableView.swift in Sources */,
+				F47868091E7CAC4000AA52AA /* PageContentViewController.swift in Sources */,
 				F47867F51E7A0CC100AA52AA /* MyFileSystem.swift in Sources */,
 				F48C91081E788AF500BFFF0B /* DetailTableViewCell.swift in Sources */,
 				F48C91101E78A8D900BFFF0B /* TweetContactTableViewController.swift in Sources */,
@@ -267,6 +274,7 @@
 				F4C902B91E76074E005C8E38 /* DiaryTableViewCell.swift in Sources */,
 				F4C902BF1E761591005C8E38 /* User.swift in Sources */,
 				F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */,
+				F47868071E7CA9D700AA52AA /* ImagePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,10 +397,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QCNR2ZQ76E;
 				INFOPLIST_FILE = loveDiary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stnaford.cs193p.weihh16.loveDiary;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stnaford.cs193p.weihh16.loveDiary.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -402,10 +411,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QCNR2ZQ76E;
 				INFOPLIST_FILE = loveDiary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stnaford.cs193p.weihh16.loveDiary;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stnaford.cs193p.weihh16.loveDiary.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
