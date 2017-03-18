@@ -1232,19 +1232,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6Mx-tZ-P9X">
-                                <rect key="frame" x="28" y="574" width="319" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O98-v8-HlZ">
-                                <rect key="frame" x="60" y="584" width="255" height="29"/>
+                                <rect key="frame" x="60" y="550" width="255" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Start"/>
-                                    <segment title="Pause"/>
-                                    <segment title="Resume"/>
                                     <segment title="Stop"/>
+                                    <segment title="Play"/>
+                                    <segment title="Download"/>
                                 </segments>
+                                <connections>
+                                    <action selector="downloadControl:" destination="03p-Iz-fpD" eventType="valueChanged" id="30f-kG-dFf"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

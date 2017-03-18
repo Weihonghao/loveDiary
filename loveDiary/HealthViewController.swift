@@ -123,8 +123,8 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         } else {
             print("fail to fuck")
         }
-        startDownload()
-        print("finish downloading")
+        //startDownload()
+        //print("finish downloading")
         
         // Do any additional setup after loading the view.
     }
@@ -250,7 +250,18 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         moviePlayerController?.prepareToPlay()
         moviePlayerController?.play()*/
         
-        let path = Bundle.main.url(forResource: "RockVideo.mp4", withExtension: nil)!
+        
+        var path:URL
+        if wetherDownload == false {
+            path = Bundle.main.url(forResource: "RockVideo.mp4", withExtension: nil)!
+        }
+        else {
+            let tmpUrl = "myVideo/" + String(myFileSystem.fileNumber("myVideo")-1) + ".mp4"
+            let localUrl = myFileSystem.getDir(tmpUrl)
+            print("\(localUrl)")
+            path = URL(fileURLWithPath:localUrl)
+            print("ahahhahah \(path)")
+        }
         asset = AVAsset(url:path)
         playerItem = AVPlayerItem(asset: asset!)
         
@@ -319,20 +330,34 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
      // Pass the selected object to the new view controller.
      }
      */
+    @IBAction func downloadControl(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 2:
+            startDownload()
+        case 1:
+            playVideo()
+        case 0:
+            stopVideo()
+        default:
+            print("Impossible")
+        }
+    }
     let myFileSystem = MyFileSystem()
     var myDonwload = DownloadItem()
+    var wetherDownload = false
     func startDownload() {
         if myFileSystem.checkDirExist("myVideo") == false {
             myFileSystem.createDir("myVideo")
         }
         //let webUrl = NSURL(string: "http://infolab.stanford.edu/~ullman/mmds/ch5.pdf")
-        let webUrl = NSURL(string: "https://www.youtube.com/watch?v=-tJYN-eG1zk")
+        let webUrl = NSURL(string: "http://weihonghao.github.io/img/videoDownload.mp4")
         let tmpUrl = "myVideo/" + String(myFileSystem.fileNumber("myVideo")) + ".mp4"
         let localUrl = myFileSystem.getDir(tmpUrl)
         print("\(localUrl)")
         myDonwload.load(url: webUrl as! URL, to: URL(fileURLWithPath: localUrl)) {
-            print("fuck you")
+            print("download succeed")
         }
+        self.wetherDownload = true
     }
     
     
