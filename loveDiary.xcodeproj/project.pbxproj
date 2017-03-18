@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */; };
 		F47867F51E7A0CC100AA52AA /* MyFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */; };
 		F47867F71E7A264D00AA52AA /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */; };
 		F47867F91E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */; };
@@ -27,6 +28,9 @@
 		F48C910C1E788B2600BFFF0B /* pictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C910B1E788B2600BFFF0B /* pictureViewController.swift */; };
 		F48C910E1E788B3000BFFF0B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C910D1E788B3000BFFF0B /* WebViewController.swift */; };
 		F48C91101E78A8D900BFFF0B /* TweetContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C910F1E78A8D900BFFF0B /* TweetContactTableViewController.swift */; };
+		F4A3B7E51E7CE0D7003101F3 /* HealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3B7E41E7CE0D7003101F3 /* HealthViewController.swift */; };
+		F4A3B7E71E7CE107003101F3 /* MyHealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3B7E61E7CE107003101F3 /* MyHealthManager.swift */; };
+		F4A3B7EB1E7CF50E003101F3 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A3B7EA1E7CF50E003101F3 /* HealthKit.framework */; };
 		F4ACB56D1E7659EE00E4B4DE /* AddDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */; };
 		F4ACB56F1E771AD300E4B4DE /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB56E1E771AD300E4B4DE /* FetchedResultsTableViewController.swift */; };
 		F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */; };
@@ -58,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rock.mp3; sourceTree = "<group>"; };
 		F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFileSystem.swift; sourceTree = "<group>"; };
 		F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -77,6 +82,10 @@
 		F48C910B1E788B2600BFFF0B /* pictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pictureViewController.swift; sourceTree = "<group>"; };
 		F48C910D1E788B3000BFFF0B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F48C910F1E78A8D900BFFF0B /* TweetContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetContactTableViewController.swift; sourceTree = "<group>"; };
+		F4A3B7E41E7CE0D7003101F3 /* HealthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthViewController.swift; sourceTree = "<group>"; };
+		F4A3B7E61E7CE107003101F3 /* MyHealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHealthManager.swift; sourceTree = "<group>"; };
+		F4A3B7E81E7CF50D003101F3 /* loveDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = loveDiary.entitlements; sourceTree = "<group>"; };
+		F4A3B7EA1E7CF50E003101F3 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F4ACB56C1E7659EE00E4B4DE /* AddDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDataTableViewController.swift; sourceTree = "<group>"; };
 		F4ACB56E1E771AD300E4B4DE /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		F4C902991E75FF78005C8E38 /* loveDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loveDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,18 +110,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48C91001E78890A00BFFF0B /* Twitter.framework in Frameworks */,
+				F4A3B7EB1E7CF50E003101F3 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4A3B7E91E7CF50E003101F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4A3B7EA1E7CF50E003101F3 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4C902901E75FF78005C8E38 = {
 			isa = PBXGroup;
 			children = (
 				F48C90FF1E78890A00BFFF0B /* Twitter.framework */,
 				F4C9029B1E75FF78005C8E38 /* loveDiary */,
 				F4C9029A1E75FF78005C8E38 /* Products */,
+				F4A3B7E91E7CF50E003101F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +146,7 @@
 		F4C9029B1E75FF78005C8E38 /* loveDiary */ = {
 			isa = PBXGroup;
 			children = (
+				F4A3B7E81E7CF50D003101F3 /* loveDiary.entitlements */,
 				F4C902A01E75FF78005C8E38 /* Main.storyboard */,
 				F4C902B61E760579005C8E38 /* DiaryTableViewController.swift */,
 				F4C902AB1E75FF78005C8E38 /* Info.plist */,
@@ -158,6 +178,9 @@
 				F47868021E7B136B00AA52AA /* HeartViewController.swift */,
 				F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */,
 				F47868081E7CAC4000AA52AA /* PageContentViewController.swift */,
+				F4A3B7E41E7CE0D7003101F3 /* HealthViewController.swift */,
+				F4A3B7E61E7CE107003101F3 /* MyHealthManager.swift */,
+				F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -207,6 +230,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = QCNR2ZQ76E;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -234,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4C902AA1E75FF78005C8E38 /* LaunchScreen.storyboard in Resources */,
+				F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */,
 				F4C902A71E75FF78005C8E38 /* Assets.xcassets in Resources */,
 				F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +279,7 @@
 				F47868091E7CAC4000AA52AA /* PageContentViewController.swift in Sources */,
 				F47867F51E7A0CC100AA52AA /* MyFileSystem.swift in Sources */,
 				F48C91081E788AF500BFFF0B /* DetailTableViewCell.swift in Sources */,
+				F4A3B7E51E7CE0D7003101F3 /* HealthViewController.swift in Sources */,
 				F48C91101E78A8D900BFFF0B /* TweetContactTableViewController.swift in Sources */,
 				F48C91061E788AE100BFFF0B /* TweetTableViewCell.swift in Sources */,
 				F4C9029D1E75FF78005C8E38 /* AppDelegate.swift in Sources */,
@@ -262,6 +292,7 @@
 				F4C902C31E763A16005C8E38 /* UserData.swift in Sources */,
 				F48C90FA1E7784DA00BFFF0B /* AddUserTableViewController.swift in Sources */,
 				F4C902BD1E76149B005C8E38 /* NSDictionary+KeyPathConvenience.swift in Sources */,
+				F4A3B7E71E7CE107003101F3 /* MyHealthManager.swift in Sources */,
 				F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */,
 				F48C91041E788AA200BFFF0B /* TweetTableViewController.swift in Sources */,
 				F47868011E7AF56A00AA52AA /* HeartUIVIew.swift in Sources */,
@@ -397,6 +428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = loveDiary/loveDiary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QCNR2ZQ76E;
 				INFOPLIST_FILE = loveDiary/Info.plist;
@@ -411,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = loveDiary/loveDiary.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QCNR2ZQ76E;
 				INFOPLIST_FILE = loveDiary/Info.plist;

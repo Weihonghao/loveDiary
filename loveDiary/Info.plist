@@ -29,6 +29,10 @@
 	<string>Set the background of the app with your beautiful photography</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app requires contacts from phone book</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>requires to share your health data</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>require to update your health data</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>For use in background</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -42,6 +46,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>healthkit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -56,9 +61,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSHealthShareUsageDescription</key>
-	<string>requires to share your health data</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>require to update your health data</string>
 </dict>
 </plist>
