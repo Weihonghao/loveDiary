@@ -10,8 +10,10 @@ import UIKit
 import CoreLocation
 import HealthKit
 import AVFoundation
+import MediaPlayer
+import AVKit
 
-class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, URLSessionDelegate {
     
     
     
@@ -121,6 +123,8 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         } else {
             print("fail to fuck")
         }
+        startDownload()
+        print("finish downloading")
         
         // Do any additional setup after loading the view.
     }
@@ -155,7 +159,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     }
     
     
-    var optionArray:[String] = ["start timing", "stop timing", "save distance", "play music", "stop music"]
+    var optionArray:[String] = ["start timing", "stop timing", "save distance", "play music", "stop music", "play video", "stop video"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -181,6 +185,10 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
             playAudio()
         case 4:
             stopAudio()
+        case 5:
+            playVideo()
+        case 6:
+            stopVideo()
         default:
             print("impossible")
         }
@@ -209,6 +217,99 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         }
     }
     
+    //var moviePlayerController:MPMoviePlayerViewController?
+
+    
+    var player : AVPlayer? = nil
+    var playerLayer : AVPlayerLayer? = nil
+    var asset : AVAsset? = nil
+    var playerItem: AVPlayerItem? = nil
+    
+    
+    @IBOutlet weak var videoView: UIView!
+    
+    func playVideo() {
+        /*let path = Bundle.main.url(forResource: "RockVideo.mp4", withExtension: nil)!
+        //let path = NSURL(string: "https://www.youtube.com/watch?v=-tJYN-eG1zk")
+
+        
+        
+        let moviePlayerController = MPMoviePlayerController(contentURL: path as URL!)
+        
+        moviePlayerController?.shouldAutoplay = true
+        moviePlayerController?.movieSourceType = MPMovieSourceType.file
+        
+        
+        moviePlayerController?.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height/2.0)
+        
+        
+        moviePlayerController?.view.tag = 100
+        self.view.addSubview((moviePlayerController?.view)!)
+        
+        moviePlayerController?.movieSourceType = MPMovieSourceType.streaming;
+        moviePlayerController?.prepareToPlay()
+        moviePlayerController?.play()*/
+        
+        let path = Bundle.main.url(forResource: "RockVideo.mp4", withExtension: nil)!
+        asset = AVAsset(url:path)
+        playerItem = AVPlayerItem(asset: asset!)
+        
+        player = AVPlayer(playerItem: self.playerItem)
+        
+        playerLayer = AVPlayerLayer(player: self.player)
+        
+        
+        videoView.frame = CGRect(x: 0, y: 0 , width: self.view.bounds.width, height: self.view.bounds.height*0.4)
+        
+        
+        playerLayer!.frame = videoView.frame
+        playerLayer!.videoGravity = AVLayerVideoGravityResizeAspect
+        videoView.layer.insertSublayer(self.playerLayer!, at:0)
+        
+        
+        player!.play()
+
+    
+    }
+    
+    
+    func stopVideo() {
+        self.player!.pause()
+        self.playerLayer!.removeFromSuperlayer()
+    }
+    
+    
+    
+    
+    /*let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    var dataTask: URLSessionDataTask?
+    var activeDownloads = [String: DownloadItem]()
+    let downloadUrl = "https://r11---sn-n4v7kne7.googlevideo.com/videoplayback?id=o-AFIzryvkq1yM3IHgurYMXpEG6UmSqmsU3da_jHQMc1Ow&requiressl=yes&ip=128.12.246.17&signature=6BB413A4486A4CFDA61E43DF2AE9FAE8C3A942E5.3B4E567AD2513F3B9E1BA080B4DFCB811B8B771A&gir=yes&ipbits=0&itag=18&sparams=clen,dur,ei,expire,gir,id,initcwndbps,ip,ipbits,ipbypass,itag,lmt,mime,mm,mn,ms,mv,pl,ratebypass,requiressl,source,upn&upn=2k6W9x4fsEg&expire=1489879098&clen=23714984&pl=18&mime=video/mp4&dur=626.056&ratebypass=yes&source=youtube&ei=2mvNWJKjD9Hz-gPOxZaIBA&lmt=1460136183582485&key=cms1&title=%E8%9B%A4%E4%B8%89%E7%AF%87%E4%B9%8B%E8%A7%86%E5%AF%9F%E4%BA%8C%E9%99%A2%E8%9B%A4%E4%B8%89%E7%AF%87%E4%B9%8B%E8%A7%86%E5%AF%9F%E4%BA%8C%E9%99%A2_HDWon.Com.mp4&redirect_counter=1&req_id=78e080396bdaa3ee&cms_redirect=yes&ipbypass=yes&mm=31&mn=sn-n4v7kne7&ms=au&mt=1489857389&mv=m"
+
+    lazy var downloadsSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        return session
+    }()
+    
+    func startDownload() {
+        if let urlString =  URL(string: downloadUrl) {
+            // 1
+            let download = DownloadItem(url: downloadUrl)
+            // 2
+            download.downloadTask = downloadsSession.downloadTask(with: urlString)
+            // 3
+            download.downloadTask!.resume()
+            // 4
+            download.isDownloading = true
+            // 5
+            activeDownloads[download.url] = download
+        }
+    }*/
+    
+    
+    
+    
     /*
      // MARK: - Navigation
      
@@ -218,5 +319,23 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
      // Pass the selected object to the new view controller.
      }
      */
+    let myFileSystem = MyFileSystem()
+    var myDonwload = DownloadItem()
+    func startDownload() {
+        if myFileSystem.checkDirExist("myVideo") == false {
+            myFileSystem.createDir("myVideo")
+        }
+        //let webUrl = NSURL(string: "http://infolab.stanford.edu/~ullman/mmds/ch5.pdf")
+        let webUrl = NSURL(string: "https://www.youtube.com/watch?v=-tJYN-eG1zk")
+        let tmpUrl = "myVideo/" + String(myFileSystem.fileNumber("myVideo")) + ".mp4"
+        let localUrl = myFileSystem.getDir(tmpUrl)
+        print("\(localUrl)")
+        myDonwload.load(url: webUrl as! URL, to: URL(fileURLWithPath: localUrl)) {
+            print("fuck you")
+        }
+    }
     
+    
+        
 }
+

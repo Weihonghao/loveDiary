@@ -1160,7 +1160,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gYh-20-d3t">
-                        <barButtonItem key="rightBarButtonItem" title="More" id="0Sy-gU-BZE" userLabel="More"/>
+                        <barButtonItem key="rightBarButtonItem" title="More" id="0Sy-gU-BZE" userLabel="More">
+                            <connections>
+                                <segue destination="03p-Iz-fpD" kind="show" id="MbL-F6-iLe"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="heartView" destination="ht2-lY-i85" id="6pR-lE-x5J"/>
@@ -1183,28 +1187,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6H-J0-iL7">
-                                <rect key="frame" x="166" y="58" width="42" height="21"/>
+                                <rect key="frame" x="121" y="283" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlF-0x-YN1">
-                                <rect key="frame" x="121" y="102" width="133" height="21"/>
+                                <rect key="frame" x="121" y="305" width="133" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTg-gc-FbF">
-                                <rect key="frame" x="89" y="157" width="165" height="21"/>
+                                <rect key="frame" x="121" y="330" width="165" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02v-3N-Wu7">
-                                <rect key="frame" x="209" y="119" width="46" height="30"/>
+                                <rect key="frame" x="193" y="300" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -1212,7 +1216,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NpV-Z1-zse">
-                                <rect key="frame" x="184" y="186" width="97" height="30"/>
+                                <rect key="frame" x="184" y="325" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Distance"/>
                                 <connections>
@@ -1220,9 +1224,28 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0M5-va-ypO">
-                                <rect key="frame" x="0.0" y="251" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="350" width="375" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxy-ex-Gay">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6Mx-tZ-P9X">
+                                <rect key="frame" x="28" y="574" width="319" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O98-v8-HlZ">
+                                <rect key="frame" x="60" y="584" width="255" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Start"/>
+                                    <segment title="Pause"/>
+                                    <segment title="Resume"/>
+                                    <segment title="Stop"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1231,6 +1254,7 @@
                         <outlet property="heartRatelabel" destination="P6H-J0-iL7" id="Ek3-1m-xWS"/>
                         <outlet property="optionPicker" destination="0M5-va-ypO" id="dxY-Ha-mmd"/>
                         <outlet property="timerLabel" destination="MlF-0x-YN1" id="ta0-tp-4Yi"/>
+                        <outlet property="videoView" destination="Xxy-ex-Gay" id="a1U-VD-fxh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDd-fJ-eWv" userLabel="First Responder" sceneMemberID="firstResponder"/>

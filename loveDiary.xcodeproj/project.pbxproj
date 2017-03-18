@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */; };
+		F41C49C51E7D1C8500A2E05B /* RockVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F41C49C41E7D1C6E00A2E05B /* RockVideo.mp4 */; };
+		F41C49C71E7D99DD00A2E05B /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C49C61E7D99DD00A2E05B /* DownloadItem.swift */; };
 		F47867F51E7A0CC100AA52AA /* MyFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */; };
 		F47867F71E7A264D00AA52AA /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */; };
 		F47867F91E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */; };
@@ -63,6 +65,9 @@
 
 /* Begin PBXFileReference section */
 		F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rock.mp3; sourceTree = "<group>"; };
+		F41C49C01E7D192800A2E05B /* RockVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = RockVideo.mp4; sourceTree = "<group>"; };
+		F41C49C41E7D1C6E00A2E05B /* RockVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = RockVideo.mp4; sourceTree = "<group>"; };
+		F41C49C61E7D99DD00A2E05B /* DownloadItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
 		F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFileSystem.swift; sourceTree = "<group>"; };
 		F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +133,7 @@
 		F4C902901E75FF78005C8E38 = {
 			isa = PBXGroup;
 			children = (
+				F41C49C01E7D192800A2E05B /* RockVideo.mp4 */,
 				F48C90FF1E78890A00BFFF0B /* Twitter.framework */,
 				F4C9029B1E75FF78005C8E38 /* loveDiary */,
 				F4C9029A1E75FF78005C8E38 /* Products */,
@@ -180,7 +186,9 @@
 				F47868081E7CAC4000AA52AA /* PageContentViewController.swift */,
 				F4A3B7E41E7CE0D7003101F3 /* HealthViewController.swift */,
 				F4A3B7E61E7CE107003101F3 /* MyHealthManager.swift */,
+				F41C49C41E7D1C6E00A2E05B /* RockVideo.mp4 */,
 				F41C49BB1E7D0E7700A2E05B /* Rock.mp3 */,
+				F41C49C61E7D99DD00A2E05B /* DownloadItem.swift */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 			files = (
 				F4C902AA1E75FF78005C8E38 /* LaunchScreen.storyboard in Resources */,
 				F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */,
+				F41C49C51E7D1C8500A2E05B /* RockVideo.mp4 in Resources */,
 				F4C902A71E75FF78005C8E38 /* Assets.xcassets in Resources */,
 				F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */,
 			);
@@ -295,6 +304,7 @@
 				F4A3B7E71E7CE107003101F3 /* MyHealthManager.swift in Sources */,
 				F4C902A51E75FF78005C8E38 /* loveDiary.xcdatamodeld in Sources */,
 				F48C91041E788AA200BFFF0B /* TweetTableViewController.swift in Sources */,
+				F41C49C71E7D99DD00A2E05B /* DownloadItem.swift in Sources */,
 				F47868011E7AF56A00AA52AA /* HeartUIVIew.swift in Sources */,
 				F47868031E7B136B00AA52AA /* HeartViewController.swift in Sources */,
 				F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
