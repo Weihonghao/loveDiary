@@ -12,7 +12,7 @@ import UserNotifications
 import Contacts
 import ContactsUI
 
-class AddUserTableViewController: UITableViewController, UNUserNotificationCenterDelegate,CNContactPickerDelegate {
+class AddUserTableViewController: UITableViewController, UNUserNotificationCenterDelegate,CNContactPickerDelegate, UITextFieldDelegate {
     
 
     
@@ -85,8 +85,8 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         fooBar.phoneNumbers = [homePhone]
         let homeEmail = CNLabeledValue(label: CNLabelHome, value: EmailLabel.text! as NSString)
         fooBar.emailAddresses = [homeEmail]
-        let twitterProfile = CNLabeledValue(label: "Twitter", value:CNSocialProfile(urlString: nil, username: (tweetNameLabel.text! as NSString) as String, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
-        fooBar.socialProfiles = [twitterProfile]
+        /*let twitterProfile = CNLabeledValue(label: "Twitter", value:CNSocialProfile(urlString: nil, username: (tweetNameLabel.text! as NSString) as String, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
+        fooBar.socialProfiles = [twitterProfile]*/
         fooBar.note  = "Love you"
         let request = CNSaveRequest()
         request.add(fooBar, toContainerWithIdentifier: nil)
@@ -302,6 +302,11 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.EmailLabel.delegate = self
+        self.userNameLabel.delegate = self
+        self.tweetNameLabel.delegate = self
+        self.PhoneNumberLabel.delegate = self
+        
         UNUserNotificationCenter.current().delegate = self
         
         switch CNContactStore.authorizationStatus(for: .contacts){
@@ -326,6 +331,10 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
     }
     
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
     
     private func updateUser() {
         let userName = userNameLabel.text  as NSString?

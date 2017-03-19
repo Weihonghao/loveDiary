@@ -10,6 +10,9 @@ import UIKit
 
 class FBViewController: UIViewController, FBSDKLoginButtonDelegate {
 
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true)
+    }
     let loginButton:FBSDKLoginButton = {
         let button = FBSDKLoginButton()
         button.readPermissions = ["email"]
@@ -68,7 +71,7 @@ class FBViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginButton)
-        loginButton.center =  view.center
+        loginButton.center =  CGPoint(x: view.bounds.midX, y: view.bounds.maxY * 0.9)//view.center
         loginButton.delegate = self
         
         if (FBSDKAccessToken.current()) != nil {

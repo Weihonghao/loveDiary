@@ -45,7 +45,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         searchBar.showsScopeBar = true
         searchBar.sizeToFit()
         searchBar.setShowsCancelButton(true, animated: true)
-        
+        searchBar.showsCancelButton = true;
         return true
     }
     
@@ -53,15 +53,22 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         searchBar.showsScopeBar = false
         searchBar.sizeToFit()
         searchBar.setShowsCancelButton(false, animated: true)
-        
+        searchBar.showsCancelButton = false;
+        searchBar.resignFirstResponder()
+        searchBar.endEditing(true)
         return true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         queryText = searchBar.text
         print("query is \(queryText)")
+        searchBar.endEditing(true)
     }
     
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
     var fetchedResultsController: NSFetchedResultsController<UserData>?
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer

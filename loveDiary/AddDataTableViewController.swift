@@ -11,7 +11,7 @@ import CoreData
 import CoreLocation
 import MapKit
 
-class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     var myFileSystem: MyFileSystem = MyFileSystem()
@@ -27,11 +27,12 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             self?.myFileSystem.deleteFile(dir)
         }
         
-        handleDelete(dir)
+        //handleDelete(dir)
+        handleAlert(first: "You have deleted image", second: "Delete Image")
     }
     
     
-    func handleDelete(_ name:String) {
+    /*func handleDelete(_ name:String) {
         let m = "You have deleted image " + name
         let alert = UIAlertController(
             title: "Delete Image",
@@ -45,7 +46,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         present(
             alert,
             animated: true)
-    }
+    }*/
     
     
     @IBAction func photofromLibrary(_ sender: UIButton) {
@@ -75,11 +76,12 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             present(picker,animated: true,completion: nil)
         }
         else {
-            handleNoCamera()
+            //handleNoCamera()
+            handleAlert(first: "No Camera", second: "You donnot have a camera on a simulator")
         }
     }
     
-    func handleNoCamera() {
+    /*func handleNoCamera() {
         let alert = UIAlertController(
             title: "No Camera",
             message: "You donnot have a camera on a simulator",
@@ -92,7 +94,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         present(
             alert,
             animated: true)
-    }
+    }*/
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -193,7 +195,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     
-    func handleHasUser() {
+    /*func handleHasUser() {
         let alert = UIAlertController(
             title: "User registered",
             message: "Please finish other blanks",
@@ -206,7 +208,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         present(
             alert,
             animated: true)
-    }
+    }*/
     
     
     
@@ -228,7 +230,8 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
                     }
                 } else if match != nil, match! != nil {
                     DispatchQueue.main.async {
-                        self?.handleHasUser()
+                        //self?.handleHasUser()
+                        self?.handleAlert(first: "User registered", second: "Please finish other blanks")
                     }
                 }
                 
@@ -348,6 +351,14 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         registerSettingsBundle()
         updateDisplayFromDefaults()
+        self.locationLabel.delegate = self
+        self.nameLabel.delegate = self
+        self.textLabel.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
     }
     
     override func didReceiveMemoryWarning() {
@@ -376,8 +387,41 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     @IBAction func backToTab(_ sender: UIButton) {
+        if self.nameLabel.text != Optional(""), self.locationLabel.text != Optional(""), self.textLabel.text != Optional("") {
         updateDiary()
         presentingViewController?.dismiss(animated: true)
+        } else {
+            
+            handleAlert(first: "Mising Information", second: "Please finish all the blank")
+            /*let alert = UIAlertController(
+                title: "Mising Information",
+                message: "Please finish all the blank",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style:.default,
+                handler: nil))
+            //alert.addTextField(configurationHandler:nil)
+            present(
+                alert,
+                animated: true)*/
+        }
+    }
+    
+    
+    func handleAlert(first titleInput: String, second messageInput: String) {
+        let alert = UIAlertController(
+            title: titleInput,
+            message: messageInput,
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil))
+        //alert.addTextField(configurationHandler:nil)
+        present(
+            alert,
+            animated: true)
     }
     
     
