@@ -9,22 +9,23 @@
 import UIKit
 
 class DiaryTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var profileImage: UIImageView!
     
+    //@IBOutlet weak var profileImage: UIImageView!
+    //display the date
     @IBOutlet weak var diaryDateLabel: UILabel!
-    
+    //display the location
     @IBOutlet weak var diaryLocationLabel: UILabel!
-    
+    //display user's screenName
     @IBOutlet weak var userLabel: UILabel!
+    //display the diary contents of the event
     @IBOutlet weak var diaryTextLabel: UILabel!
     
     
     var diary: Diary? { didSet { updateUI() } }
     
-    
+    //update UI
     private func updateUI() {
-        profileImage = nil
+        //profileImage = nil
         //diaryDateLabel.text = diary?.date
         diaryLocationLabel.text = diary?.location
         diaryTextLabel.text = diary?.text
@@ -33,27 +34,27 @@ class DiaryTableViewCell: UITableViewCell {
         diaryDateLabel.text = diary?.date
         
         /*if let created = diary?.date {
-            let formatter = DateFormatter()
-            if Date().timeIntervalSince(created) > 24*60*60 {
-                formatter.dateStyle = .short
-            } else {
-                formatter.timeStyle = .short
-            }
-            diaryDateLabel.text = formatter.string(from: created)
-        } else {
-            diaryDateLabel?.text = nil
-        }*/
+         let formatter = DateFormatter()
+         if Date().timeIntervalSince(created) > 24*60*60 {
+         formatter.dateStyle = .short
+         } else {
+         formatter.timeStyle = .short
+         }
+         diaryDateLabel.text = formatter.string(from: created)
+         } else {
+         diaryDateLabel?.text = nil
+         }*/
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

@@ -54,5 +54,21 @@ class UserData: NSManagedObject {
     }
     
     
+    static func deleteUser(in context: NSManagedObjectContext, recent query: String) throws
+    {
+        let request: NSFetchRequest<UserData> = UserData.fetchRequest()
+        request.predicate = NSPredicate(format: "screenName = %@", query)
+        do {
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                assert(matches.count == 1, "Query.findOrCreateTwitterUser -- database inconsistency!")
+                context.delete(matches.first!)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    
     
 }

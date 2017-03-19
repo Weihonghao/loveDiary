@@ -26,6 +26,11 @@
 		F47868031E7B136B00AA52AA /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868021E7B136B00AA52AA /* HeartViewController.swift */; };
 		F47868071E7CA9D700AA52AA /* ImagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */; };
 		F47868091E7CAC4000AA52AA /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47868081E7CAC4000AA52AA /* PageContentViewController.swift */; };
+		F48956F01E7F1D80004E72BB /* family_roof.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F48956EF1E7F1D80004E72BB /* family_roof.jpg */; };
+		F48956F21E7F25C3004E72BB /* book-cover-plus-7.png in Resources */ = {isa = PBXBuildFile; fileRef = F48956F11E7F25C3004E72BB /* book-cover-plus-7.png */; };
+		F48956F41E7F25D4004E72BB /* calendar-7.png in Resources */ = {isa = PBXBuildFile; fileRef = F48956F31E7F25D4004E72BB /* calendar-7.png */; };
+		F48956F61E7F25E3004E72BB /* camera-7.png in Resources */ = {isa = PBXBuildFile; fileRef = F48956F51E7F25E3004E72BB /* camera-7.png */; };
+		F48956F81E7F25F8004E72BB /* dumbbell-7.png in Resources */ = {isa = PBXBuildFile; fileRef = F48956F71E7F25F8004E72BB /* dumbbell-7.png */; };
 		F48C90F81E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */; };
 		F48C90FA1E7784DA00BFFF0B /* AddUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */; };
 		F48C91001E78890A00BFFF0B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48C90FF1E78890A00BFFF0B /* Twitter.framework */; };
@@ -92,6 +97,11 @@
 		F47868021E7B136B00AA52AA /* HeartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
 		F47868061E7CA9D700AA52AA /* ImagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePageViewController.swift; sourceTree = "<group>"; };
 		F47868081E7CAC4000AA52AA /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
+		F48956EF1E7F1D80004E72BB /* family_roof.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = family_roof.jpg; sourceTree = "<group>"; };
+		F48956F11E7F25C3004E72BB /* book-cover-plus-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-cover-plus-7.png"; sourceTree = "<group>"; };
+		F48956F31E7F25D4004E72BB /* calendar-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7.png"; sourceTree = "<group>"; };
+		F48956F51E7F25E3004E72BB /* camera-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-7.png"; sourceTree = "<group>"; };
+		F48956F71E7F25F8004E72BB /* dumbbell-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dumbbell-7.png"; sourceTree = "<group>"; };
 		F48C90F71E773DC700BFFF0B /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		F48C90F91E7784DA00BFFF0B /* AddUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserTableViewController.swift; sourceTree = "<group>"; };
 		F48C90FF1E78890A00BFFF0B /* Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +190,10 @@
 				F4C902B61E760579005C8E38 /* DiaryTableViewController.swift */,
 				F4C902AB1E75FF78005C8E38 /* Info.plist */,
 				F4C902A31E75FF78005C8E38 /* loveDiary.xcdatamodeld */,
+				F48956F51E7F25E3004E72BB /* camera-7.png */,
+				F48956F31E7F25D4004E72BB /* calendar-7.png */,
+				F48956F71E7F25F8004E72BB /* dumbbell-7.png */,
+				F48956F11E7F25C3004E72BB /* book-cover-plus-7.png */,
 				F4C902B11E75FF99005C8E38 /* SupportingFile */,
 				F4C902B81E76074E005C8E38 /* DiaryTableViewCell.swift */,
 				F4C902BA1E76099A005C8E38 /* Diary.swift */,
@@ -226,6 +240,7 @@
 				F4C9029C1E75FF78005C8E38 /* AppDelegate.swift */,
 				F4C902A61E75FF78005C8E38 /* Assets.xcassets */,
 				F4C902A81E75FF78005C8E38 /* LaunchScreen.storyboard */,
+				F48956EF1E7F1D80004E72BB /* family_roof.jpg */,
 			);
 			name = SupportingFile;
 			sourceTree = "<group>";
@@ -300,6 +315,11 @@
 				F4C902AA1E75FF78005C8E38 /* LaunchScreen.storyboard in Resources */,
 				F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */,
 				F41C49C51E7D1C8500A2E05B /* RockVideo.mp4 in Resources */,
+				F48956F41E7F25D4004E72BB /* calendar-7.png in Resources */,
+				F48956F01E7F1D80004E72BB /* family_roof.jpg in Resources */,
+				F48956F21E7F25C3004E72BB /* book-cover-plus-7.png in Resources */,
+				F48956F81E7F25F8004E72BB /* dumbbell-7.png in Resources */,
+				F48956F61E7F25E3004E72BB /* camera-7.png in Resources */,
 				F4C902A71E75FF78005C8E38 /* Assets.xcassets in Resources */,
 				F4702F351E7E6C76004C1D2E /* Settings.bundle in Resources */,
 				F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */,

@@ -13,7 +13,7 @@ import Twitter
 class DetailTableViewController: UITableViewController {
     
     
-    //@IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
+    @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
     //There should be title for the section and also an array of contents
     private struct mentionItem {
         var title: String

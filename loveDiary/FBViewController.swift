@@ -150,6 +150,20 @@ class FBViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
+    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
+     //print("try here")
+     if let rootController = navigationController?.viewControllers.first as? FBViewController {
+     if rootController == self {
+     //print("true")
+     return true
+     }
+     }
+     //print("false")
+     return false
+     }
 
     /*
     // MARK: - Navigation

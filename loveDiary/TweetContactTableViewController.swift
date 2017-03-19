@@ -113,7 +113,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
     }
     
     
-    
+    var screenNameArray:[String] = [String]()
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //print("\(fetchedResultsController?.sections?.count)")
@@ -124,6 +124,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
             print("screenName \(contact.screenName)")
             cell.textLabel?.text = contact.screenName
             cell.detailTextLabel?.text = contact.tweetName
+            screenNameArray.append(contact.screenName!)
             //let tweetCount = tweetCountWithMentionBy(twitterUser)
             //cell.detailTextLabel?.text = "\(tweetCount) tweet\((tweetCount == 1) ? "" : "s")"
         }
@@ -179,6 +180,26 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         //print("false")
         return false
     }
+    
+    /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            container?.performBackgroundTask { [weak self] context in
+                if let _ = try? UserData.deleteUser(in: context, recent: (self?.screenNameArray[indexPath.row])!) {
+                    print("fuck table  \(self?.screenNameArray[indexPath.row])")
+                    self?.screenNameArray.remove(at: indexPath.row)
+                }
+                
+                try? context.save()
+                self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                print("asd \(indexPath)")
+            
+            
+            
+        }
+    }*/
+    
+    
     // MARK: - Table view data source
     
     /*

@@ -38,7 +38,7 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
     
     var searchText: String? {
         didSet {
-            print("start updating UI")
+            //print("start updating UI")
             updateUI()
             title = searchText
         }
@@ -49,6 +49,8 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer{ didSet { updateUI() } }
     
+    
+    // uodate UI search for your family members' events. The key word is family member's userName
     private func updateUI() {
         //print("popularity query is \(queryText)")
         if let context = container?.viewContext, searchText != nil {
@@ -112,7 +114,7 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
         
         return cell
     }*/
-    
+    //return the cell to display
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //print("\(fetchedResultsController?.sections?.count)")

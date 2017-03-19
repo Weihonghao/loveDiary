@@ -13,8 +13,10 @@ class blueToothViewController: UIViewController, CBCentralManagerDelegate, CBPer
 
     
     @IBOutlet weak var statusLabel: UILabel!
+
+    @IBOutlet weak var resultLabel: UILabel!
     
-    @IBOutlet weak var temperatureLabel: UILabel!
+    //@IBOutlet weak var temperatureLabel: UILabel!
     
     var manager:CBCentralManager!
     var peripheral:CBPeripheral!
@@ -37,7 +39,7 @@ class blueToothViewController: UIViewController, CBCentralManagerDelegate, CBPer
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
         statusLabel.text = "loading"
-        temperatureLabel.text = "00.00"
+        resultLabel.text = "00.00"
         // Do any additional setup after loading the view.
     }
 
@@ -147,7 +149,7 @@ class blueToothViewController: UIViewController, CBCentralManagerDelegate, CBPer
             //print("fuck \(ambientTemperature)")
             
             // Display on the temp label
-            self.temperatureLabel.text = ambientTemperature
+            self.resultLabel.text = ambientTemperature
         }
     }
     
