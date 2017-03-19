@@ -12,9 +12,10 @@ class BlurViewController: UIViewController {
     
     private var minZoomScale = 0.03
     private var maxZoomScale = 10.0
-    
+    //file manager
     var myFileSystem = MyFileSystem()
     
+    //use printer here
     @IBAction func printView(_ sender: UIBarButtonItem) {
         
         let printInfo = UIPrintInfo(dictionary:nil)
@@ -25,20 +26,20 @@ class BlurViewController: UIViewController {
         let printController = UIPrintInteractionController.shared
         printController.printInfo = printInfo
         
-        // Assign a UIImage version of my UIView as a printing iten
+        // we use the extension to print the current view as a printingitem
         printController.printingItem = self.view.turnPicture()
         
-        // Do it
+        // present
         printController.present(from: self.view.frame, in: self.view, animated: true, completionHandler: nil)
     }
     
     
     
-    
+    //dismiss it
     @IBAction func cancel(_ sender: UIBarButtonItem) {presentingViewController?.dismiss(animated: true)
     }
     
-    
+    //the scrollview for image
     @IBOutlet weak var pictureScrollView: UIScrollView! {
         didSet {
             // to zoom we have to handle viewForZooming(in scrollView:)
@@ -54,6 +55,7 @@ class BlurViewController: UIViewController {
     
     fileprivate var imageView = UIImageView()
     
+    //photoNumber to load image from filesystem
     var photoNumber: Int? {
         didSet{
             image = nil
@@ -89,6 +91,7 @@ class BlurViewController: UIViewController {
                 }
             }
         }
+        //we add lcur effect here at the center of the image
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame.size = CGSize(width: view.frame.width/2, height: view.frame.width/2)
@@ -156,6 +159,7 @@ class BlurViewController: UIViewController {
     
 }
 
+//extension for blur effect
 extension BlurViewController : UIScrollViewDelegate
 {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -163,6 +167,7 @@ extension BlurViewController : UIScrollViewDelegate
     }
 }
 
+//extension to turn current view to a image
 extension UIView {
     func turnPicture() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)

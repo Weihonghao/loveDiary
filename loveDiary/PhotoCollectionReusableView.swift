@@ -9,6 +9,7 @@
 import UIKit
 
 class PhotoCollectionReusableView: UICollectionReusableView {
-        
+    
+    //the header for the section
     @IBOutlet weak var photoHeaderLabel: UILabel!
 }

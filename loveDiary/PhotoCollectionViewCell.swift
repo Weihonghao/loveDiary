@@ -10,8 +10,9 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
+    //file manager
     var myFileSystem = MyFileSystem()
-    
+    //the number to load picture from nsfilesystem
     var photoNumber: Int? {
         didSet{
             image = nil

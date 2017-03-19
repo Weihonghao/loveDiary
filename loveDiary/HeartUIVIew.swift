@@ -11,10 +11,10 @@ import UIKit
 
 
 class HeartUIVIew: UIView {
-
+    
     //@IBInspectable
     //var mouthCurvature: Double = 0.5 // 1.0 is full smile and -1.0 is full frown
-    
+    //this class is mainly for gesture and painting
     var axesOriginValue: CGPoint? = nil
     
     @IBInspectable
@@ -36,11 +36,12 @@ class HeartUIVIew: UIView {
     //var centerOffset: CGPoint = CGPoint(x:0.0, y:0.0) { didSet { setNeedsDisplay() } }
     
     
-    
+    //radius
     var HeartRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 3 * scale
     }
     
+    //center
     var HeartCenter: CGPoint {
         get {
             return axesOriginValue ?? CGPoint(x: bounds.midX, y: bounds.midY)
@@ -52,14 +53,14 @@ class HeartUIVIew: UIView {
     }
     
     
-    
+    //the upper part of heart
     private enum UpHeart {
         case left
         case right
     }
     
     
-    
+    //change scale when gesture pinch used
     func changeScale(byReactingTo pinchRecognizer: UIPinchGestureRecognizer)
     {
         switch pinchRecognizer.state {
@@ -71,12 +72,13 @@ class HeartUIVIew: UIView {
         }
     }
     
-    
+    //change origin when gesture pan is used
     func panMoveOrigin(byReactingTo panRecognizer: UIPanGestureRecognizer) {
         HeartCenter = panRecognizer.location(in: panRecognizer.view)
     }
     
     
+    //double click to change the direction
     func doubleTapChangeDirection(byReactingTo tapRecognizer: UITapGestureRecognizer) {
         if tapRecognizer.state == .ended {
             //HeartCenter = tapRecognizer.location(in: tapRecognizer.view)
@@ -98,6 +100,7 @@ class HeartUIVIew: UIView {
         heartCurvature += directionDouble * 0.1
     }
     
+    //use of UIbezierpath
     private func pathForUp(_ upHeart: UpHeart) -> UIBezierPath
     {
         func centerOfEye(_ upHeart: UpHeart) -> CGPoint {
@@ -121,22 +124,22 @@ class HeartUIVIew: UIView {
     
     
     /*private func pathForDown() -> UIBezierPath {
-        let path = UIBezierPath(arcCenter: HeartCenter, radius: HeartRadius, startAngle: 0, endAngle: CGFloat.pi, clockwise: true)
-        path.lineWidth = lineWidth
-        return path
-    }*/
+     let path = UIBezierPath(arcCenter: HeartCenter, radius: HeartRadius, startAngle: 0, endAngle: CGFloat.pi, clockwise: true)
+     path.lineWidth = lineWidth
+     return path
+     }*/
     
     private struct Ratios {
         /*static let skullRadiusToEyeOffset: CGFloat = 3
-        static let skullRadiusToEyeRadius: CGFloat = 10
-        static let skullRadiusToMouthWidth: CGFloat = 1
-        static let skullRadiusToMouthHeight: CGFloat = 3*/
+         static let skullRadiusToEyeRadius: CGFloat = 10
+         static let skullRadiusToMouthWidth: CGFloat = 1
+         static let skullRadiusToMouthHeight: CGFloat = 3*/
         static let heartRadiusToDownOffset: CGFloat = 1.5
         static let heartRadiusToDownHeight: CGFloat = 0.7
     }
     
     
-    
+    //path for the down part curve of heart
     private func pathForDown() -> UIBezierPath
     {
         let directionInt:CGFloat = direction ? 1.0 : -1.0

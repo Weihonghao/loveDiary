@@ -21,6 +21,7 @@ import Foundation
 
 
 class MyFileSystem {
+    //get the dir of file
     public func getDir(_ dir: String) -> String {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let documentsDirectory = paths[0]
@@ -28,6 +29,7 @@ class MyFileSystem {
         return dataPath
     }
     
+    //if not, create the folder
     public func createDir(_ dir: String) {
         let dataPath = getDir(dir)
         do {
@@ -37,16 +39,19 @@ class MyFileSystem {
         }
     }
     
+    //check whether the folder exists or not
     public func  checkDirExist(_ dir: String) -> Bool {
         let dataPath = getDir(dir)
         return FileManager.default.fileExists(atPath: dataPath)
     }
     
+    //create the file of given folder and directory
     public func createFile(_ dir: String) {
         let dataPath = getDir(dir)
         FileManager.default.createFile(atPath: dataPath, contents: nil, attributes: nil)
     }
     
+    //the number of files under current directory
     public func fileNumber(_ dir: String) -> Int {
         let dataPath = getDir(dir)
         do {
@@ -58,6 +63,7 @@ class MyFileSystem {
         return 0
     }
     
+    //delete the file
     public func deleteFile(_ dir: String) {
         let dataPath = getDir(dir)
         print("herhhrhehehe \(dataPath)")
@@ -67,7 +73,6 @@ class MyFileSystem {
             print("\(err)")
         }
     }
-    
 }
 
 

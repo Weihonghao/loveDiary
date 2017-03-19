@@ -33,6 +33,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
             updateUI()
         }
     }
+    //use of searchbar
     @IBOutlet weak var searchBar: UISearchBar!{
         didSet {
             searchBar.delegate = self
@@ -59,13 +60,14 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         return true
     }
     
+    //when clicking on search, hide the keyboard
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         queryText = searchBar.text
-        print("query is \(queryText)")
+        //print("query is \(queryText)")
         searchBar.endEditing(true)
     }
     
-    
+    //when clicking on cancel, hide the keyboard
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
@@ -74,6 +76,8 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         { didSet { updateUI() } }
     
+    
+    //search by users' screenName
     private func updateUI() {
         print("start updating ui")
         //print("\(self.searchBar.selectedScopeButtonIndex)")
@@ -148,7 +152,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
     }
     
     
-    
+    //segue to tweet search
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var destinationViewController = segue.destination
         //if it a navigationController, turn it to a UIcontroller
@@ -168,6 +172,8 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
         }
     }
     
+    
+    //unwind segue
     @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         //print("try here")
@@ -182,22 +188,22 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
     }
     
     /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            container?.performBackgroundTask { [weak self] context in
-                if let _ = try? UserData.deleteUser(in: context, recent: (self?.screenNameArray[indexPath.row])!) {
-                    print("fuck table  \(self?.screenNameArray[indexPath.row])")
-                    self?.screenNameArray.remove(at: indexPath.row)
-                }
-                
-                try? context.save()
-                self?.tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-                print("asd \(indexPath)")
-            
-            
-            
-        }
-    }*/
+     if editingStyle == .delete {
+     container?.performBackgroundTask { [weak self] context in
+     if let _ = try? UserData.deleteUser(in: context, recent: (self?.screenNameArray[indexPath.row])!) {
+     print("fuck table  \(self?.screenNameArray[indexPath.row])")
+     self?.screenNameArray.remove(at: indexPath.row)
+     }
+     
+     try? context.save()
+     self?.tableView.deleteRows(at: [indexPath], with: .fade)
+     }
+     print("asd \(indexPath)")
+     
+     
+     
+     }
+     }*/
     
     
     // MARK: - Table view data source

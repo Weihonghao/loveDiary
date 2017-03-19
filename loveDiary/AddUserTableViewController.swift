@@ -11,16 +11,16 @@ import CoreData
 import UserNotifications
 import Contacts
 import ContactsUI
-
+//methods when we try to add users to Core Data and contact books
 class AddUserTableViewController: UITableViewController, UNUserNotificationCenterDelegate,CNContactPickerDelegate, UITextFieldDelegate {
     
-
+    
     
     
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-    
+    //for contactkit usage
     var contactStore = CNContactStore()
     var selectedContact: CNContact = CNContact()
     
@@ -40,16 +40,16 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
             animated: true)
     }
     
-    
+    //Input and display users' name
     @IBOutlet weak var userNameLabel: UITextField!
-    
+    //Input and display users' tweet screenName
     @IBOutlet weak var tweetNameLabel: UITextField!
-    
+    //Input and display users' phone number
     @IBOutlet weak var PhoneNumberLabel: UITextField!
-    
+    //Input and display users' email address
     @IBOutlet weak var EmailLabel: UITextField!
     
-    
+    //use contact picker here
     @IBAction func showAllContact(_ sender: UIButton) {
         let controller = CNContactPickerViewController()
         controller.delegate = self
@@ -57,40 +57,43 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         
     }
     
+    
+    //different from showing all users from contact picker, we highlight the search results in the contact books
     @IBAction func enabelSelect(_ sender: UIButton) {
         
         let controller = CNContactPickerViewController()
-        
         controller.delegate = self
-        
         let formatString = "givenName BEGINSWITH '" + (userNameLabel.text ?? "") + "'"
         controller.predicateForEnablingContact =
             NSPredicate(format:
                 formatString,
                         argumentArray: nil)
-        
-        //controller.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'", argumentArray: nil)
-        
         navigationController?.present(controller, animated: true, completion: nil)
     }
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         self.selectedContact = contact
     }
     
-    
+    //save the current user into contact book
     @IBAction func SaveContact(_ sender: UIButton) {
-        let fooBar = CNMutableContact()
-        fooBar.givenName = userNameLabel.text!
+        let userAdded = CNMutableContact()
+        //user's given name
+        userAdded.givenName = userNameLabel.text!
+        //user's home phone number
         let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: PhoneNumberLabel.text!))
-        fooBar.phoneNumbers = [homePhone]
+        userAdded.phoneNumbers = [homePhone]
+        //user's hone email address
         let homeEmail = CNLabeledValue(label: CNLabelHome, value: EmailLabel.text! as NSString)
-        fooBar.emailAddresses = [homeEmail]
+        userAdded.emailAddresses = [homeEmail]
+        // In my iphone bought in China, insert tweet account is forbidden
+        // On simulator, it works fine
         /*let twitterProfile = CNLabeledValue(label: "Twitter", value:CNSocialProfile(urlString: nil, username: (tweetNameLabel.text! as NSString) as String, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
-        fooBar.socialProfiles = [twitterProfile]*/
-        fooBar.note  = "Love you"
+         fooBar.socialProfiles = [twitterProfile]*/
+        userAdded.note  = "Love you"
         let request = CNSaveRequest()
-        request.add(fooBar, toContainerWithIdentifier: nil)
+        request.add(userAdded, toContainerWithIdentifier: nil)
         do{
+            //create a local notification telling users that one entry in contact book has been created
             try contactStore.execute(request)
             print("Successfully stored the contact")
             
@@ -113,34 +116,14 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
     }
     
     
-    /*func handleContact(_ signal:Bool) {
-        var alert = UIAlertController(
-            title: "User Not Found",
-            message: "No such user in your contact book",
-            preferredStyle: .alert)
-        if signal == true {
-            alert = UIAlertController(
-                title: "User Found",
-                message: "You find this user in your contact book",
-                preferredStyle: .alert)
-        }
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style:.default,
-            handler: nil))
-        //alert.addTextField(configurationHandler:nil)
-        present(
-            alert,
-            animated: true)
-    }*/
     
-    
+    //search whether user in contact book and return the results in alert
     @IBAction func SearchContact(_ sender: UIButton) {
         
         /*contactStore.requestAccess(for: .contacts){succeeded, err in
-            guard err == nil && succeeded else{
-                return
-            }*/
+         guard err == nil && succeeded else{
+         return
+         }*/
         
         let predicate = CNContact.predicateForContacts(matchingName: self.userNameLabel.text!)
         let toFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
@@ -151,11 +134,11 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
                 matching: predicate, keysToFetch: toFetch as [CNKeyDescriptor])
             
             /*for contact in contacts{
-                print("contact here")
-                print(contact.givenName)
-                print(contact.familyName)
-                print(contact.identifier)
-            }*/
+             print("contact here")
+             print(contact.givenName)
+             print(contact.familyName)
+             print(contact.identifier)
+             }*/
             
             if contacts.count > 0 {
                 //tweetNameLabel.text = contacts[0].socialProfiles.first?.value.username
@@ -165,10 +148,10 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
                 
                 //print(CNContactFormatter.string(from: contacts.first!, style: .fullName))
                 /*for contact in contacts {
-                    for email in contact.emailAddresses {
-                        let _ = email.value as String
-                    }
-                }*/
+                 for email in contact.emailAddresses {
+                 let _ = email.value as String
+                 }
+                 }*/
                 self.handleAlert(first: "User Found", second: "You find this user in your contact book")
             } else {
                 self.handleAlert(first: "User Not Found", second: "No such user in your contact book")
@@ -188,18 +171,18 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         
         do{
             let contact = try contactStore.unifiedContacts(matching: predicate,
-                                                                      keysToFetch: toFetch as [CNKeyDescriptor])
-            let fooBar = contact.first?.mutableCopy() as! CNMutableContact
+                                                           keysToFetch: toFetch as [CNKeyDescriptor])
+            let userAdded = contact.first?.mutableCopy() as! CNMutableContact
             //fooBar.givenName = userNameLabel.text!
             let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: PhoneNumberLabel.text!))
-            fooBar.phoneNumbers = [homePhone]
+            userAdded.phoneNumbers = [homePhone]
             let homeEmail = CNLabeledValue(label: CNLabelHome, value: EmailLabel.text! as NSString)
-            fooBar.emailAddresses = [homeEmail]
+            userAdded.emailAddresses = [homeEmail]
             let twitterProfile = CNLabeledValue(label: "Twitter", value:CNSocialProfile(urlString: nil, username: (tweetNameLabel.text! as NSString) as String, userIdentifier: nil, service: CNSocialProfileServiceTwitter))
-            fooBar.socialProfiles = [twitterProfile]
-            fooBar.note  = "Update you, still love you"
+            userAdded.socialProfiles = [twitterProfile]
+            userAdded.note  = "Update you, still love you"
             let request = CNSaveRequest()
-            request.add(fooBar, toContainerWithIdentifier: nil)
+            request.add(userAdded, toContainerWithIdentifier: nil)
             do{
                 try contactStore.execute(request)
                 print("Successfully stored the contact")
@@ -226,6 +209,7 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         }
     }
     
+    //delete the user in contact books
     @IBAction func deleteContact(_ sender: UIButton) {
         OperationQueue().addOperation{[unowned contactStore] in
             let predicate = CNContact.predicateForContacts(matchingName: self.userNameLabel.text!)
@@ -234,7 +218,7 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
             do{
                 
                 let contacts = try contactStore.unifiedContacts(matching: predicate,
-                                                                          keysToFetch: toFetch as [CNKeyDescriptor])
+                                                                keysToFetch: toFetch as [CNKeyDescriptor])
                 
                 guard contacts.count > 0 else{
                     print("No contacts found")
@@ -251,15 +235,16 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
                 req.delete(mutableContact)
                 
                 do{
+                    //create a notification telling user that deletion succeeds
                     try contactStore.execute(req)
                     DispatchQueue.main.async {
-                    self.handleAlert(first: "delete users", second: "Successfully deleted the user")
+                        self.handleAlert(first: "delete users", second: "Successfully deleted the user")
                     }
                     print("Successfully deleted the user")
                     
                 } catch let e{
                     DispatchQueue.main.async {
-                    self.handleAlert(first: "delete users", second: "Error = \(e)")
+                        self.handleAlert(first: "delete users", second: "Error = \(e)")
                     }
                     print("Error = \(e)")
                 }
@@ -270,11 +255,9 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         }
     }
     
+    //for notification, when user create a new user for core data
     @IBAction func submitRegister(_ sender: UIButton) {
         updateUser()
-        //center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            // Enable or disable features based on authorization.
-        //}
         print("notification notification")
         let content = UNMutableNotificationContent()
         content.title = "New User"
@@ -284,15 +267,9 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         // Deliver the notification in five seconds.
         //let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest.init(identifier: "FiveSecond", content: content, trigger: nil)
-
+        
         let center = UNUserNotificationCenter.current()
         center.add(request)
-        
-        /*let notification = UILocalNotification()
-        notification.alertBody = "Hello, local notifications!"
-        notification.fireDate = NSDate().addingTimeInterval(1) as Date // 10 seconds after now
-        UIApplication.shared.scheduleLocalNotification(notification)*/
-        
     }
     
     
@@ -354,11 +331,11 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         container?.performBackgroundTask { [weak self] context in
             let _ = try? UserData.findOrCreateUser(matching: user, in: context, recent: query as String)
             try? context.save()
-        self?.printDatabaseStatistics()
+            self?.printDatabaseStatistics()
         }
     }
     
-    
+    //print information to see whther CoreData updated successfully
     private func printDatabaseStatistics() {
         if let context = container?.viewContext {
             context.perform {
