@@ -12,6 +12,7 @@ import HealthKit
 import AVFoundation
 import MediaPlayer
 import AVKit
+import CoreMotion
 
 class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, URLSessionDelegate {
     
@@ -127,6 +128,22 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         //print("finish downloading")
         
         // Do any additional setup after loading the view.
+        movementManager.gyroUpdateInterval = 0.2
+        movementManager.accelerometerUpdateInterval = 0.2
+        
+        movementManager.startAccelerometerUpdates(to: OperationQueue.current!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+            self.outputAccData(acceleration: accelerometerData!.acceleration)
+            if(NSError != nil) {
+                print("\(NSError)")
+            }
+        }
+        
+        movementManager.startGyroUpdates(to: OperationQueue.current!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
+            self.outputRotData(rotation: gyroData!.rotationRate)
+            if (NSError != nil){
+                print("\(NSError)")
+            }
+        })
     }
     
     func setHeartRate() {
@@ -361,6 +378,23 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     }
     
     
-        
+    
+    @IBOutlet weak var accelerationLabel: UILabel!
+    
+    @IBOutlet weak var rotationLabel: UILabel!
+    var movementManager = CMMotionManager()
+    
+    
+    
+    func outputAccData(acceleration: CMAcceleration){
+        let accelerationArray = [fabs(acceleration.x),fabs(acceleration.y),fabs(acceleration.z)]
+        self.accelerationLabel.text = String(format: "%.2f", accelerationArray.max()!)
+    }
+    
+    func outputRotData(rotation: CMRotationRate){
+        let rotationArray = [fabs(rotation.x),fabs(rotation.y),fabs(rotation.z)]
+        self.rotationLabel.text = String(format: "%.2f", rotationArray.max()!)
+    }
+    
 }
 
