@@ -13,10 +13,10 @@ import MapKit
 
 class AddDataTableViewController: UITableViewController, CLLocationManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
     
-    
+    //file manager
     var myFileSystem: MyFileSystem = MyFileSystem()
     
-    
+    //image Picker to choose pictures from photos or cameras
     let picker = UIImagePickerController()
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -26,29 +26,11 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.myFileSystem.deleteFile(dir)
         }
-        
-        //handleDelete(dir)
+        //alert user they delete an image
         handleAlert(first: "You have deleted image", second: "Delete Image")
     }
     
-    
-    /*func handleDelete(_ name:String) {
-        let m = "You have deleted image " + name
-        let alert = UIAlertController(
-            title: "Delete Image",
-            message: m,
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style:.default,
-            handler: nil))
-        //alert.addTextField(configurationHandler:nil)
-        present(
-            alert,
-            animated: true)
-    }*/
-    
-    
+    //user image picker
     @IBAction func photofromLibrary(_ sender: UIButton) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -56,7 +38,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         present(picker, animated: true, completion: nil)
     }
     
-    
+    // we pop the images from the photos
     @IBAction func photoFromLibraryPop(_ sender: UIBarButtonItem) {
         picker.allowsEditing = false
         picker.sourceType = .photoLibrary
@@ -66,7 +48,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         picker.popoverPresentationController?.barButtonItem = sender
     }
     
-    
+    //choose the images from camera
     @IBAction func takePhoto(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.allowsEditing = false
@@ -81,34 +63,20 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         }
     }
     
-    /*func handleNoCamera() {
-        let alert = UIAlertController(
-            title: "No Camera",
-            message: "You donnot have a camera on a simulator",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style:.default,
-            handler: nil))
-        //alert.addTextField(configurationHandler:nil)
-        present(
-            alert,
-            animated: true)
-    }*/
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
     
-    
+    //image picker controller
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any])
     {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageSelected = info[UIImagePickerControllerOriginalImage] as! UIImage
         profileImageView.contentMode = .scaleAspectFit
-        profileImageView.image = chosenImage
-        let imageData = UIImagePNGRepresentation(chosenImage)!
+        profileImageView.image = imageSelected
+        let imageData = UIImagePNGRepresentation(imageSelected)!
         let dir = "myImage/" + String(myFileSystem.fileNumber("myImage")) + ".png"
         let imageURL = URL(fileURLWithPath: myFileSystem.getDir(dir))
         print("\(imageURL)")
@@ -128,9 +96,10 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     @IBAction func getCurrentLocation(_ sender: UIButton) {
         mapView.showsUserLocation = true
+        //return the current latitude and longitude of the location
         locationLabel.text = NSNumber(value: (myLocationManager.location?.coordinate.latitude)! as Double).stringValue + " " + NSNumber(value: (myLocationManager.location?.coordinate.longitude)! as Double).stringValue
-        //locationLabel.text = "fuck"
     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         manager.stopUpdatingLocation()
@@ -138,12 +107,11 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
         let span = MKCoordinateSpanMake(0.002,0.002)
         let region = MKCoordinateRegion(center: coordinations, span: span)
-        
         mapView.setRegion(region, animated: true)
         
     }
     
-    
+    //If there is no user Name, we would segue to anothe page to ask users to register for the family members
     func handleNoUserName() {
         let alert = UIAlertController(
             title: "No UserName",
@@ -167,9 +135,6 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             handleNoUserName()
             return false
         }
-        //print("user name here \(self.nameLabel.text)")
-        //print(self.nameLabel.text == nil)
-        //print(self.nameLabel.text)
         return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
     }
     
@@ -194,24 +159,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
-    
-    /*func handleHasUser() {
-        let alert = UIAlertController(
-            title: "User registered",
-            message: "Please finish other blanks",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style:.default,
-            handler: nil))
-        //alert.addTextField(configurationHandler:nil)
-        present(
-            alert,
-            animated: true)
-    }*/
-    
-    
-    
+    //check whether the user is in the CoreData and read the information about it. We do this because we are in a static table view instead of dynamic.
     @IBAction func checkUser(_ sender: UIButton) {
         if let username = nameLabel.text {
             container?.performBackgroundTask { [weak self] context in
@@ -241,17 +189,19 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     
     
     
-    
+    //Input and display users' name
     @IBOutlet weak var nameLabel: UITextField!
+    //Input and display users' location
     @IBOutlet weak var locationLabel: UITextField!
     
-    
+    //Input and display users' date
     @IBOutlet weak var dateLabel: UIDatePicker!
     
-    
+    //Input and display users' mood
     @IBOutlet weak var moodControl: UISegmentedControl!
+    //Input and display the content of diary
     @IBOutlet weak var textLabel: UITextField!
-    
+    //show current location with map view
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -297,7 +247,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         
         
     }
-    
+    //print some information to see whehter the Core Data gets updated successfully
     private func printDatabaseStatistics() {
         if let context = container?.viewContext {
             context.perform {
@@ -319,7 +269,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
     
-    
+    //dismiss itself when popover or modal
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true)
     }
@@ -341,14 +291,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         if myFileSystem.checkDirExist("myImage") == false {
             myFileSystem.createDir("myImage")
         }
-        //print(myFileSystem.checkDirExist("myImage"))
         
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         registerSettingsBundle()
         updateDisplayFromDefaults()
         self.locationLabel.delegate = self
@@ -385,26 +328,14 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
      }
      }*/
     
-    
+    //check whether user has inputted all the information in the blank
     @IBAction func backToTab(_ sender: UIButton) {
         if self.nameLabel.text != Optional(""), self.locationLabel.text != Optional(""), self.textLabel.text != Optional("") {
-        updateDiary()
-        presentingViewController?.dismiss(animated: true)
+            updateDiary()
+            presentingViewController?.dismiss(animated: true)
         } else {
             
             handleAlert(first: "Mising Information", second: "Please finish all the blank")
-            /*let alert = UIAlertController(
-                title: "Mising Information",
-                message: "Please finish all the blank",
-                preferredStyle: .alert)
-            alert.addAction(UIAlertAction(
-                title: "OK",
-                style:.default,
-                handler: nil))
-            //alert.addTextField(configurationHandler:nil)
-            present(
-                alert,
-                animated: true)*/
         }
     }
     
@@ -424,7 +355,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
             animated: true)
     }
     
-    
+    //use unwind here
     @IBAction func unwindToRoot(sender: UIStoryboardSegue) { }
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         //print("try here")
@@ -438,7 +369,7 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         return false
     }
     
-    
+    //we use setting bundle here for the content of segmented control for mood
     func registerSettingsBundle(){
         var appDefaults = [String:AnyObject]()
         appDefaults["myMood"] = 2 as AnyObject?

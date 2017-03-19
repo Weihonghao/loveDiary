@@ -10,19 +10,19 @@ import UIKit
 import CoreData
 
 class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchTextField.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     
     @IBOutlet weak var searchTextField: UITextField!
     
@@ -62,15 +62,15 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
                     ascending: true,
                     selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
                 )/*,
-                NSSortDescriptor(
-                    key: "count",
-                    ascending: false
-                ),
-                NSSortDescriptor(
-                    key: "mentionItem",
-                    ascending: true,
-                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
-                )*/]
+                 NSSortDescriptor(
+                 key: "count",
+                 ascending: false
+                 ),
+                 NSSortDescriptor(
+                 key: "mentionItem",
+                 ascending: true,
+                 selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+                 )*/]
             
             //popular things happen more than 1
             if searchText != "all" {
@@ -96,24 +96,24 @@ class DiaryTableViewController: FetchedResultsTableViewController, UITextFieldDe
     
     
     /*override func numberOfSections(in tableView: UITableView) -> Int {
-        return diarys.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return diarys[section].count
-    }*/
-
+     return diarys.count
+     }
+     
+     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     return diarys[section].count
+     }*/
+    
     /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Diary", for: indexPath)
-        
-        let diary: Diary = diarys[indexPath.section][indexPath.row]
-        print("new Diary \(diary)")
-        if let diaryCell = cell as? DiaryTableViewCell {
-            diaryCell.diary = diary
-        }
-        
-        return cell
-    }*/
+     let cell = tableView.dequeueReusableCell(withIdentifier: "Diary", for: indexPath)
+     
+     let diary: Diary = diarys[indexPath.section][indexPath.row]
+     print("new Diary \(diary)")
+     if let diaryCell = cell as? DiaryTableViewCell {
+     diaryCell.diary = diary
+     }
+     
+     return cell
+     }*/
     //return the cell to display
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

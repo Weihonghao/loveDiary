@@ -11,7 +11,7 @@ import UIKit
 class WebViewController: UIViewController, UIWebViewDelegate {
     
     
-
+    
     //the webview for safari
     
     @IBOutlet weak var webView: UIWebView! {
@@ -26,7 +26,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     
-
+    
     //url of the website
     public var webUrl: URL? {
         didSet {

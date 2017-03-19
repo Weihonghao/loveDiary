@@ -56,10 +56,8 @@ extension TweetContactTableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
-            print("fuck here row  \(sections[section].numberOfObjects)")
             return sections[section].numberOfObjects
         } else {
-            print("fuck here second row \(0)")
             return 0
         }
     }

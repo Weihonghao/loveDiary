@@ -8,15 +8,15 @@
 
 import Foundation
 
-
+//class for storing a diary item
 public struct Diary
 {
     public let text: String
     public let user: User
-    public let date: String //Date
+    public let date: String //Date  // we turn the Date entities in to srting when store it to Core Data
     public let location: String
     public let identifier: String
-    public let mood: String
+    public let mood: String // the Mood chosen from segmented control
     
     
     init?(data: NSDictionary?)
@@ -41,12 +41,10 @@ public struct Diary
         self.identifier = identifier
         self.mood = mood
         
-        /*self.media = Tweet.mediaItems(from: data?.array(forKeyPath: TwitterKey.media))
-        self.hashtags = Tweet.mentions(from: data?.array(forKeyPath: TwitterKey.Entities.hashtags), in: text, with: "#")
-        self.urls = Tweet.mentions(from: data?.array(forKeyPath: TwitterKey.Entities.urls), in: text, with: "http")
-        self.userMentions = Tweet.mentions(from: data?.array(forKeyPath: TwitterKey.Entities.userMentions), in: text, with: "@")*/
     }
     
+    
+    //store all keys in a struct to make the code more concise
     struct DiaryKey {
         static let user = "user"
         static let text = "text"
@@ -55,12 +53,12 @@ public struct Diary
         static let identifier = "identifier"
         static let mood = "mood"
         /*static let media = "entities.media"
-        struct Entities {
-            static let hashtags = "entities.hashtags"
-            static let urls = "entities.urls"
-            static let userMentions = "entities.user_mentions"
-            static let indices = "indices"
-            static let text = "text"
-        }*/
+         struct Entities {
+         static let hashtags = "entities.hashtags"
+         static let urls = "entities.urls"
+         static let userMentions = "entities.user_mentions"
+         static let indices = "indices"
+         static let text = "text"
+         }*/
     }
 }

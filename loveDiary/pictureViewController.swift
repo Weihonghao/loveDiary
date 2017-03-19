@@ -11,7 +11,7 @@ import UIKit
 class pictureViewController: UIViewController {
     private var minZoomScale = 0.03
     private var maxZoomScale = 10.0
-
+    
     
     @IBOutlet weak var pictureScrollView: UIScrollView! {
         didSet {

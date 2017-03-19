@@ -8,14 +8,15 @@
 
 import UIKit
 import CoreData
-
+//The dairy entities in CoreData
 class DiaryData: NSManagedObject {
+    //find whethe it is in CoreData, otherwise create it.
     class func findOrCreateDiary(matching diaryInfo: Diary, in context: NSManagedObjectContext, recent query: String) throws
     {
         //lowercase all the query and keywords since we need to be case-insensitive
         let request: NSFetchRequest<DiaryData> = DiaryData.fetchRequest()
         //if query != "all" {
-            request.predicate = NSPredicate(format: "id = %@ and user.screenName = %@", diaryInfo.identifier, query)
+        request.predicate = NSPredicate(format: "id = %@ and user.screenName = %@", diaryInfo.identifier, query)
         //}
         do {
             _ = try context.fetch(request)
@@ -33,5 +34,5 @@ class DiaryData: NSManagedObject {
         print("user \(newDiary.user)")
         //newDiary.query = try? .findOrCreateRecent(matching: queryLower, in: context)
     }
-
+    
 }

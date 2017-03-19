@@ -39,10 +39,10 @@ class TweetTableViewCell: UITableViewCell
     private func updateUI() {
         //tweetTextLabel?.text = tweet?.text
         let attributeText = NSMutableAttributedString(string: tweet?.text ?? "")
-         attributeText.changeColor(keywords: tweet?.hashtags, color: colorStruct.hashtagNewColor)
-         attributeText.changeColor(keywords: tweet?.urls, color: colorStruct.urlNewColor)
-         attributeText.changeColor(keywords: tweet?.userMentions, color: colorStruct.userMentionNewColor)
-         tweetTextLabel?.attributedText = attributeText
+        attributeText.changeColor(keywords: tweet?.hashtags, color: colorStruct.hashtagNewColor)
+        attributeText.changeColor(keywords: tweet?.urls, color: colorStruct.urlNewColor)
+        attributeText.changeColor(keywords: tweet?.userMentions, color: colorStruct.userMentionNewColor)
+        tweetTextLabel?.attributedText = attributeText
         tweetUserLabel?.text = tweet?.user.description
         
         if let profileImageURL = tweet?.user.profileImageURL {

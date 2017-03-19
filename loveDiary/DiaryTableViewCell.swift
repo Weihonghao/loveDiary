@@ -33,17 +33,6 @@ class DiaryTableViewCell: UITableViewCell {
         
         diaryDateLabel.text = diary?.date
         
-        /*if let created = diary?.date {
-         let formatter = DateFormatter()
-         if Date().timeIntervalSince(created) > 24*60*60 {
-         formatter.dateStyle = .short
-         } else {
-         formatter.timeStyle = .short
-         }
-         diaryDateLabel.text = formatter.string(from: created)
-         } else {
-         diaryDateLabel?.text = nil
-         }*/
     }
     
     override func awakeFromNib() {
