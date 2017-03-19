@@ -346,6 +346,8 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        registerSettingsBundle()
+        updateDisplayFromDefaults()
     }
     
     override func didReceiveMemoryWarning() {
@@ -390,6 +392,22 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         }
         //print("false")
         return false
+    }
+    
+    
+    func registerSettingsBundle(){
+        var appDefaults = [String:AnyObject]()
+        appDefaults["myMood"] = 2 as AnyObject?
+        UserDefaults.standard.register(defaults: appDefaults)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func updateDisplayFromDefaults(){
+        //Get the defaults
+        let defaults = UserDefaults.standard
+        //Set the controls to the default values.
+        print("fuck here \(defaults.integer(forKey: "myMood"))")
+        self.moodControl.selectedSegmentIndex = defaults.integer(forKey: "myMood")
     }
     
 }

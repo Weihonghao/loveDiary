@@ -16,6 +16,7 @@
 		F41C49D41E7DEDA900A2E05B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41C49D31E7DEDA900A2E05B /* Bolts.framework */; };
 		F41C49D61E7E1E4700A2E05B /* blueToothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C49D51E7E1E4700A2E05B /* blueToothViewController.swift */; };
 		F4702F331E7E6945004C1D2E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4702F321E7E6945004C1D2E /* CoreMotion.framework */; };
+		F4702F351E7E6C76004C1D2E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4702F341E7E6C76004C1D2E /* Settings.bundle */; };
 		F47867F51E7A0CC100AA52AA /* MyFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */; };
 		F47867F71E7A264D00AA52AA /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */; };
 		F47867F91E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */; };
@@ -81,6 +82,7 @@
 		F41C49D31E7DEDA900A2E05B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		F41C49D51E7E1E4700A2E05B /* blueToothViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blueToothViewController.swift; sourceTree = "<group>"; };
 		F4702F321E7E6945004C1D2E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F4702F341E7E6C76004C1D2E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F47867F41E7A0CC100AA52AA /* MyFileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFileSystem.swift; sourceTree = "<group>"; };
 		F47867F61E7A264D00AA52AA /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F47867F81E7A2D5A00AA52AA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				F41C49CE1E7DE62F00A2E05B /* loveDiary-Bridging-Header.h */,
 				F41C49D11E7DE8C400A2E05B /* FBViewController.swift */,
 				F41C49D51E7E1E4700A2E05B /* blueToothViewController.swift */,
+				F4702F341E7E6C76004C1D2E /* Settings.bundle */,
 			);
 			path = loveDiary;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				F41C49BC1E7D0E7700A2E05B /* Rock.mp3 in Resources */,
 				F41C49C51E7D1C8500A2E05B /* RockVideo.mp4 in Resources */,
 				F4C902A71E75FF78005C8E38 /* Assets.xcassets in Resources */,
+				F4702F351E7E6C76004C1D2E /* Settings.bundle in Resources */,
 				F4C902A21E75FF78005C8E38 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
