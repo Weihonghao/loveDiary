@@ -78,7 +78,6 @@ class HeartViewController: UIViewController, UIPopoverPresentationControllerDele
     //use of UIanimation here
     //we need three animation to let the heart beat
     @objc private func beatHeart() {
-        /*UIView.animate(withDuration: <#T##TimeInterval#>, delay: <#T##TimeInterval#>, options: <#T##UIViewAnimationOptions#>, animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)*/
         UIView.animate(
             withDuration: HeartBeat.segmentDuration,
             animations: { self.zoomHeart(by: HeartBeat.scale) },

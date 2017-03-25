@@ -109,8 +109,8 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
             let center = UNUserNotificationCenter.current()
             center.add(request)
             
-        } catch let err{
-            print("Failed to save the contact. \(err)")
+        } catch let error{
+            print("Failed to save the contact. \(error)")
         }
         
     }
@@ -120,15 +120,9 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
     //search whether user in contact book and return the results in alert
     @IBAction func SearchContact(_ sender: UIButton) {
         
-        /*contactStore.requestAccess(for: .contacts){succeeded, err in
-         guard err == nil && succeeded else{
-         return
-         }*/
-        
         let predicate = CNContact.predicateForContacts(matchingName: self.userNameLabel.text!)
         let toFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
         //let toFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName)]
-        //OperationQueue().addOperation{[unowned contactStore] in
         do{
             let contacts = try self.contactStore.unifiedContacts(
                 matching: predicate, keysToFetch: toFetch as [CNKeyDescriptor])
@@ -141,26 +135,14 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
              }*/
             
             if contacts.count > 0 {
-                //tweetNameLabel.text = contacts[0].socialProfiles.first?.value.username
-                //tweetNameLabel.text = contacts.first?.phoneNumbers.first?.value(forKey: "digits") as! String
-                //let MobNumVar = ((contacts.first?.phoneNumbers[0].value)! as CNPhoneNumber).value(forKey: "digits") as! String
-                //print(MobNumVar)
-                
-                //print(CNContactFormatter.string(from: contacts.first!, style: .fullName))
-                /*for contact in contacts {
-                 for email in contact.emailAddresses {
-                 let _ = email.value as String
-                 }
-                 }*/
                 self.handleAlert(first: "User Found", second: "You find this user in your contact book")
             } else {
                 self.handleAlert(first: "User Not Found", second: "No such user in your contact book")
             }
             
-        } catch let err{
-            print(err)
+        } catch let error{
+            print(error)
         }
-        //}
         
     }
     
@@ -170,10 +152,8 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         let toFetch = [CNContactEmailAddressesKey]
         
         do{
-            let contact = try contactStore.unifiedContacts(matching: predicate,
-                                                           keysToFetch: toFetch as [CNKeyDescriptor])
+            let contact = try contactStore.unifiedContacts(matching: predicate, keysToFetch: toFetch as [CNKeyDescriptor])
             let userAdded = contact.first?.mutableCopy() as! CNMutableContact
-            //fooBar.givenName = userNameLabel.text!
             let homePhone = CNLabeledValue(label: CNLabelHome, value: CNPhoneNumber(stringValue: PhoneNumberLabel.text!))
             userAdded.phoneNumbers = [homePhone]
             let homeEmail = CNLabeledValue(label: CNLabelHome, value: EmailLabel.text! as NSString)
@@ -192,20 +172,18 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
                 content.body = "You just update" + userNameLabel.text! + " to your Iphone contact list"
                 content.sound = UNNotificationSound.default()
                 content.categoryIdentifier = "reminder"
-                // Deliver the notification in five seconds.
-                //let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 1, repeats: false)
                 let request = UNNotificationRequest.init(identifier: "FiveSecond", content: content, trigger: nil)
                 
                 let center = UNUserNotificationCenter.current()
                 center.add(request)
                 
-            } catch let err{
-                print("Failed to update first the contact. \(err)")
+            } catch let error{
+                print("Failed to update first the contact. \(error)")
             }
             
         }
-        catch let err{
-            print("Failed to update the contact. \(err)")
+        catch let error{
+            print("Failed to update the contact. \(error)")
         }
     }
     
@@ -217,8 +195,7 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
             
             do{
                 
-                let contacts = try contactStore.unifiedContacts(matching: predicate,
-                                                                keysToFetch: toFetch as [CNKeyDescriptor])
+                let contacts = try contactStore.unifiedContacts(matching: predicate, keysToFetch: toFetch as [CNKeyDescriptor])
                 
                 guard contacts.count > 0 else{
                     print("No contacts found")
@@ -242,11 +219,11 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
                     }
                     print("Successfully deleted the user")
                     
-                } catch let e{
+                } catch let error{
                     DispatchQueue.main.async {
-                        self.handleAlert(first: "delete users", second: "Error = \(e)")
+                        self.handleAlert(first: "delete users", second: "Error = \(error)")
                     }
-                    print("Error = \(e)")
+                    print("Error = \(error)")
                 }
                 
             } catch let err{
@@ -264,8 +241,6 @@ class AddUserTableViewController: UITableViewController, UNUserNotificationCente
         content.body = "You just add a new user"
         content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "reminder"
-        // Deliver the notification in five seconds.
-        //let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest.init(identifier: "FiveSecond", content: content, trigger: nil)
         
         let center = UNUserNotificationCenter.current()

@@ -191,7 +191,7 @@ class TweetContactTableViewController: FetchedResultsTableViewController, UISear
      if editingStyle == .delete {
      container?.performBackgroundTask { [weak self] context in
      if let _ = try? UserData.deleteUser(in: context, recent: (self?.screenNameArray[indexPath.row])!) {
-     print("fuck table  \(self?.screenNameArray[indexPath.row])")
+     
      self?.screenNameArray.remove(at: indexPath.row)
      }
      

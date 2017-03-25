@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+//the content for page controller
 class PageContentViewController: UIViewController {
-
-    @IBOutlet weak var pageImageView: UIImageView!
     
+    @IBOutlet weak var pageImageView: UIImageView!
+    //the index to load photo from file system
     var pageIndex: Int? {
         didSet{
             //print("\(pageIndex)")
@@ -58,10 +58,10 @@ class PageContentViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }

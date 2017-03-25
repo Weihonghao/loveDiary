@@ -10,22 +10,12 @@ import Foundation
 
 
 class DownloadItem {
-    /*var url: String
-    var isDownloading = false
-    var progress: Float = 0.0
-    
-    var downloadTask: URLSessionDownloadTask?
-    var resumeData: NSData?
-    
-    init(url: String) {
-        self.url = url
-    }*/
-    
+    //mainly for load method when  using  NSURLSession, sockets: Networking API
     func load(url: URL, to localUrl: URL, completion: @escaping () -> ()) {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
-
         
+        // use get method
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -33,19 +23,16 @@ class DownloadItem {
         let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
             if let tempLocalUrl = tempLocalUrl, error == nil {
                 // Success
-                if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                    print("Success: \(statusCode)")
+                if ((response as? HTTPURLResponse)?.statusCode) != nil {
+                    print("Success")
                 }
-                
                 do {
                     try FileManager.default.copyItem(at: tempLocalUrl, to: localUrl)
                     completion()
-                } catch (let writeError) {
-                    print("error writing file \(localUrl) : \(writeError)")
+                } catch {
                 }
                 
             } else {
-                //print("Failure: %@", error?.localizedDescription);
             }
         }
         task.resume()

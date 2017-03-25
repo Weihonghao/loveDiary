@@ -381,7 +381,6 @@ class AddDataTableViewController: UITableViewController, CLLocationManagerDelega
         //Get the defaults
         let defaults = UserDefaults.standard
         //Set the controls to the default values.
-        print("fuck here \(defaults.integer(forKey: "myMood"))")
         self.moodControl.selectedSegmentIndex = defaults.integer(forKey: "myMood")
     }
     

@@ -17,49 +17,53 @@ import CoreMotion
 class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, URLSessionDelegate {
     
     
-    
+    @IBOutlet weak var timeControlButton: UIButton!
+    //display heartRate load from ihealth
     @IBOutlet weak var heartRatelabel: UILabel!
-    
+    //display the timer
     @IBOutlet weak var timerLabel: UILabel!
-    
+    //display the distance in the time interval
     @IBOutlet weak var distanceLabel: UILabel!
     
     
-    var zeroTime = NSDate()
+    var timeOrigin = NSDate()
     var timer : Timer = Timer()
     
-    let locationManager = CLLocationManager()
-    var startLocation: CLLocation!
-    var lastLocation: CLLocation!
-    var distanceTraveled = 0.0
-    
+    //health manager
     let myHealthManager:MyHealthManager = MyHealthManager()
     var heartRate: HKQuantitySample?
     
     var whetherStart = false
     
+    let locationManager = CLLocationManager()
+    var beginLocation: CLLocation!
+    var endLocation: CLLocation!
+    var distanceSum = 0.0
     
+    //start timer and location updates
     func startTiming() {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(HealthViewController.showTime), userInfo: nil, repeats: true)
-        zeroTime = NSDate()
+        timeOrigin = NSDate()
         
-        distanceTraveled = 0.0
-        startLocation = nil
-        lastLocation = nil
+        distanceSum = 0.0
+        beginLocation = nil
+        endLocation = nil
         locationManager.startUpdatingLocation()
         whetherStart = true
+        //self.timeControlButton.currentTitle = "Stop Timing"
     }
     
-    
+    //stop timer and location updates
     func stopTiming() {
         timer.invalidate()
         locationManager.stopUpdatingLocation()
         whetherStart = false
+        //self.timeControlButton.currentTitle = "Start Timing"
     }
     
-    
+    //save distance
     func saveDistance() {
-        myHealthManager.saveDistance(distanceRecorded: distanceTraveled, date: NSDate())
+        myHealthManager.saveDistance(distanceRecorded: distanceSum, date: NSDate())
     }
     
     @IBAction func timeControl(_ sender: UIButton) {
@@ -81,24 +85,24 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     
     
     func showTime() {
-        let timePassed = NSInteger(NSDate().timeIntervalSince(zeroTime as Date))
+        let timePassed = NSInteger(NSDate().timeIntervalSince(timeOrigin as Date))
         let realTime = String(Int(timePassed)) + "s"
         self.timerLabel.text = realTime
     }
     
-    
+    //read the distance in unit of meter
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if startLocation == nil {
-            startLocation = locations.first as CLLocation!
+        if beginLocation == nil {
+            beginLocation = locations.first as CLLocation!
         } else {
-            let lastDistance = lastLocation.distance(from: locations.last as CLLocation!)
-            distanceTraveled += lastDistance
-            let realDistance = String(format: "%.2f", distanceTraveled) + "M"
+            let lastDistance = endLocation.distance(from: locations.last as CLLocation!)
+            distanceSum += lastDistance
+            let realDistance = String(format: "%.2f", distanceSum) + "M"
             
             self.distanceLabel.text = realDistance
         }
         
-        lastLocation = locations.last as CLLocation!
+        endLocation = locations.last as CLLocation!
     }
     
     
@@ -111,7 +115,6 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         
         locationManager.requestWhenInUseAuthorization()
         
-        print("fuck here")
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -120,11 +123,8 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         }
         
         if myHealthManager.authorizeHealthKit() {
-            print("succeed to fuck")
             self.setHeartRate()
-        } else {
-            print("fail to fuck")
-        }
+        } 
         //startDownload()
         //print("finish downloading")
         
@@ -145,13 +145,12 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
                 print("\(NSError)")
             }
         })
+        //self.timeControlButton. = "Start Timing"
     }
     
     func setHeartRate() {
         // Create the HKSample for HeartRate.
         let heartRateSample = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
-        
-        // Call HealthKitManager's getSample() method to get the user's heartRate.
         print("before get")
         self.myHealthManager.getHeartRate(sampleType: heartRateSample!, completion: { (selfHeartRate, error) -> Void in
             
@@ -161,7 +160,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
                 print("before transform")
                 let heartRateInt = Int(((self.heartRate?.quantity.doubleValue(for: HKUnit.init(from: "count/s")))!*60))
                 DispatchQueue.main.async {
-                    let realHeartRate = String(heartRateInt) + " counts/s"
+                    let realHeartRate = "Your heart rate: " + String(heartRateInt) + " counts/s"
                     self.heartRatelabel.text = realHeartRate
                 }
             }
@@ -176,7 +175,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //used for picker controller
     var optionArray:[String] = ["start timing", "stop timing", "save distance", "play music", "stop music", "play video", "stop video"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -190,7 +189,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.optionArray[row]
     }
-    
+    //different function for different options in switch
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch row {
         case 0:
@@ -212,19 +211,15 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         }
     }
     
-    
+    //for audio play
     var sound: AVAudioPlayer?
-    //var bombSoundEffect: AVAudioPlayer!
     func playAudio() {
         let path = Bundle.main.url(forResource: "Rock.mp3", withExtension:nil)!
-        //let url = URL(fileURLWithPath: path)
         
         do {
             sound = try AVAudioPlayer(contentsOf: path)
-            //bombSoundEffect = sound
             sound?.play()
         } catch {
-            // couldn't load file :(
         }
     }
     
@@ -247,6 +242,8 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     @IBOutlet weak var videoView: UIView!
     
     func playVideo() {
+        
+        //The comment out part is for MPMoviePlayer. However, it is depreciated in ios 10 so we just comment it out. However, they are workable
         /*let path = Bundle.main.url(forResource: "RockVideo.mp4", withExtension: nil)!
          //let path = NSURL(string: "https://www.youtube.com/watch?v=-tJYN-eG1zk")
          
@@ -282,15 +279,15 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
         }
         asset = AVAsset(url:path)
         playerItem = AVPlayerItem(asset: asset!)
-        
+        //we use avplayer for ios 10.0
         player = AVPlayer(playerItem: self.playerItem)
         
         playerLayer = AVPlayerLayer(player: self.player)
         
         
-        videoView.frame = CGRect(x: 0, y: 0 , width: self.view.bounds.width, height: self.view.bounds.height*0.4)
+        videoView.frame = CGRect(x: -8, y: 0 , width: self.view.bounds.width, height: self.view.bounds.height*0.4)
         
-        
+        //videoView.center.x = self.view.center.x - 50
         playerLayer!.frame = videoView.frame
         playerLayer!.videoGravity = AVLayerVideoGravityResizeAspect
         videoView.layer.insertSublayer(self.playerLayer!, at:0)
@@ -312,35 +309,6 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     
     
     
-    /*let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-     var dataTask: URLSessionDataTask?
-     var activeDownloads = [String: DownloadItem]()
-     let downloadUrl = "https://r11---sn-n4v7kne7.googlevideo.com/videoplayback?id=o-AFIzryvkq1yM3IHgurYMXpEG6UmSqmsU3da_jHQMc1Ow&requiressl=yes&ip=128.12.246.17&signature=6BB413A4486A4CFDA61E43DF2AE9FAE8C3A942E5.3B4E567AD2513F3B9E1BA080B4DFCB811B8B771A&gir=yes&ipbits=0&itag=18&sparams=clen,dur,ei,expire,gir,id,initcwndbps,ip,ipbits,ipbypass,itag,lmt,mime,mm,mn,ms,mv,pl,ratebypass,requiressl,source,upn&upn=2k6W9x4fsEg&expire=1489879098&clen=23714984&pl=18&mime=video/mp4&dur=626.056&ratebypass=yes&source=youtube&ei=2mvNWJKjD9Hz-gPOxZaIBA&lmt=1460136183582485&key=cms1&title=%E8%9B%A4%E4%B8%89%E7%AF%87%E4%B9%8B%E8%A7%86%E5%AF%9F%E4%BA%8C%E9%99%A2%E8%9B%A4%E4%B8%89%E7%AF%87%E4%B9%8B%E8%A7%86%E5%AF%9F%E4%BA%8C%E9%99%A2_HDWon.Com.mp4&redirect_counter=1&req_id=78e080396bdaa3ee&cms_redirect=yes&ipbypass=yes&mm=31&mn=sn-n4v7kne7&ms=au&mt=1489857389&mv=m"
-     
-     lazy var downloadsSession: URLSession = {
-     let configuration = URLSessionConfiguration.default
-     let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-     return session
-     }()
-     
-     func startDownload() {
-     if let urlString =  URL(string: downloadUrl) {
-     // 1
-     let download = DownloadItem(url: downloadUrl)
-     // 2
-     download.downloadTask = downloadsSession.downloadTask(with: urlString)
-     // 3
-     download.downloadTask!.resume()
-     // 4
-     download.isDownloading = true
-     // 5
-     activeDownloads[download.url] = download
-     }
-     }*/
-    
-    
-    
-    
     /*
      // MARK: - Navigation
      
@@ -350,6 +318,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
      // Pass the selected object to the new view controller.
      }
      */
+    // we use socket and  NSURLSession, sockets: Networking API here
     @IBAction func downloadControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 2:
@@ -370,6 +339,7 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
             myFileSystem.createDir("myVideo")
         }
         //let webUrl = NSURL(string: "http://infolab.stanford.edu/~ullman/mmds/ch5.pdf")
+        // the 'we are the champion mp4 uploaded on my personal website'
         let webUrl = NSURL(string: "http://weihonghao.github.io/img/videoDownload.mp4")
         let tmpUrl = "myVideo/" + String(myFileSystem.fileNumber("myVideo")) + ".mp4"
         let localUrl = myFileSystem.getDir(tmpUrl)
@@ -388,14 +358,16 @@ class HealthViewController: UIViewController, CLLocationManagerDelegate, UIPicke
     var movementManager = CMMotionManager()
     
     
-    
+    //we use core motion here
     func outputAccData(acceleration: CMAcceleration){
         let accelerationArray = [fabs(acceleration.x),fabs(acceleration.y),fabs(acceleration.z)]
+        //we display the max acceleration in the x,y,z direction
         self.accelerationLabel.text = String(format: "%.2f", accelerationArray.max()!)
     }
     
     func outputRotData(rotation: CMRotationRate){
         let rotationArray = [fabs(rotation.x),fabs(rotation.y),fabs(rotation.z)]
+        //we display the max rotation in the x,y,z direction
         self.rotationLabel.text = String(format: "%.2f", rotationArray.max()!)
     }
     
